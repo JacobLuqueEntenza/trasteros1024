@@ -12,7 +12,7 @@
         <h2 id="titulo">tutrasteroenhuelva.es</h2>
         <h3 id="parrafo">Simplifica tu almacenamiento y mantén tus pertenencias seguras con nuestros trasteros en alquiler.</h3>
         <div class="botones">            
-            <button onclick="window.location.href='/proyecto-daw/app/vista/trasteros/trasteros.php#situacionTrasteros' ">Explorar Trasteros</button>
+            <button onclick="window.location.href='/trasteros1024/app/vista/trasteros/trasteros.php#situacionTrasteros' ">Explorar Trasteros</button>
         </div>
 </section>
 <section class="catalogo">
@@ -41,13 +41,13 @@
                 <h3>Selección</h3>            
                 <p>Elige el trastero que mejor se ajuste a tus necesidades y presupuesto.</p>
             </div>
-            <img src="img/flechaAbj.png" alt="flechaDerecha">
+            <img src="multimedia/img/flechaAbj.png" alt="flechaDerecha">
             <div class="tarjeta" id="tarj-2">2</div>            
             <div class="tarjeta" >            
                 <h3>Registro</h3>            
                 <p>Completa el formulario de registro y firma el contrato de alquiler.</p>
             </div>
-            <img src="img/flechaAbj.png" alt="flechaDerecha">
+            <img src="multimedia/img/flechaAbj.png" alt="flechaDerecha">
             <div class="tarjeta" id="tarj-3">3</div>            
             <div class="tarjeta" >            
                 <h3>Seguridad Garantizada</h3>            
@@ -82,16 +82,16 @@
         <div class="divContacto">
             <div class="tarjeta">
                 <div class="divImg">
-                    <img src="img/gmail.png" alt="gmail">
-                    <img src="img/outlook.png" alt="outlook">
+                    <img src="multimedia/img/gmail.png" alt="gmail">
+                    <img src="multimedia/img/outlook.png" alt="outlook">
                 </div>    
                 <h3>Correo Electrónico</h3>
                 <p>Envíanos tus consultas y solicitudes a tutrasteroenhuelva@gmail.com</p>
             </div>
             <div class="tarjeta">
                 <div class="divImg">
-                    <img src="img/telefono.png" alt="telefono">
-                    <img src="img/whatapp.png" alt="whatapp">
+                    <img src="multimedia/img/telefono.png" alt="telefono">
+                    <img src="multimedia/img/whatapp.png" alt="whatapp">
                 </div>
                 <h3>Línea de Atención</h3>
                 <p>Llámanos al 555-1234 para obtener asistencia personalizada.</p>
