@@ -28,7 +28,7 @@ class UsuariosControlador{
 
         // Manejo de errores durante la inclusión de archivos necesarios
         try {
-            require_once "../../config/conexion.php"; 
+            require_once "../../../config/conexion.php"; 
             require_once '../../modelo/usuariosModelo.php'; 
         } catch (Exception $e) {
             throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
@@ -45,9 +45,9 @@ class UsuariosControlador{
                 $_SESSION['id_user']=$existeUsuario['id_user'];
                 $_SESSION['rol']=$existeUsuario['rol_id'];
                 $_SESSION['trastero']=$existeUsuario['trastero_id'];
-                header('Location: /proyecto-daw/public/index.php');
+                header('Location: /trasteros1024/public/index.php');
             }else{
-                header('Location: /proyecto-daw/app/vista/login/login.php'); 
+                header('Location: /trasteros1024/app/vista/usuarios/login.php'); 
             }    
             exit();
         }catch(Exception $e){
@@ -164,7 +164,7 @@ class UsuariosControlador{
     public function numeroPaginas($filasPorPagina,$rol) {
     // Manejo de errores durante la inclusión de archivos necesarios
     try {
-        require_once "../../modelo/usuariosModelo.php";
+        require_once "../../../modelo/usuariosModelo.php";
     } catch (Exception $e) {
         throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
     }
@@ -229,7 +229,7 @@ class UsuariosControlador{
  */
     public function actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol, $trastero) {        
         try {   
-            require_once ('../../modelo/usuariosModelo.php');
+            require_once ('../../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
             $usuario->editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol, $trastero);
 
@@ -248,7 +248,7 @@ class UsuariosControlador{
  */
     public function eliminar($id) {
         try {
-            require_once ('../../modelo/usuariosModelo.php');
+            require_once ('../../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
             $usuario->eliminarUsuario($id);
 
