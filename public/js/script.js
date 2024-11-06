@@ -110,26 +110,3 @@ function mostrarVideo(url) {
     video.play();
 };
 
-
-/**
- * cuando carge la pagina nos aparezca el loader
- * 
- 
-window.addEventListener("DOMContentLoaded", () => {
-    showLoader();
-  })
-  
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-        hideLoader();
-      }, 5000);
-  })
-  
-  
-  const loader = document.getElementById("loaderPagina");
-  const showLoader = () => {
-   loader.classList.add("show_loader");
-  }
-  const hideLoader = () => {
-    loader.style.display='flex';
-  }*/

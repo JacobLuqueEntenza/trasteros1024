@@ -45,7 +45,7 @@
 
     <?php
          }else{ ?>
-             <li class="liMenu"><a class="aMenu" href="">Hola, <?php echo $_SESSION['usuario']; ?>  </a></li>
+             <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/usuarios/usuarioEditar.php">Hola, <?php echo $_SESSION['usuario']; ?>  </a></li>
              <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/controlador/cerrarSesionControlador.php">CerrarSesión</a></li>        
     <?php
     };

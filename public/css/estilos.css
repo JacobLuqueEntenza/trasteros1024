@@ -44,6 +44,9 @@ h3{
 header{
     z-index: 5;
 }
+
+
+
 /*----la imagen del login sea igual siempre--------*/
 .liMenu>img{
     width: 2em;

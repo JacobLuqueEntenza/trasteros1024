@@ -80,7 +80,7 @@ class UsuariosControlador{
     }
     // archivos necesarios con manejo de errores
     try {
-        require_once "../../config/conexion.php";
+        require_once "../../../config/conexion.php";
         require_once '../../modelo/usuariosModelo.php';
     } catch (Exception $e) {
         throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
@@ -90,12 +90,14 @@ class UsuariosControlador{
     try {
         $usuario = new UsuariosModelo();
         $usuario->agregarUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
+        
     } catch (Exception $e) {
         throw new Exception('Error al guardar el usuario en la base de datos: ' . $e->getMessage());
     }
     
     // Redirigir a la lista de usuarios
     header('Location: usuariosLista.php');
+    return true;
     exit(); 
     }//fin guardaUsuario
 
@@ -119,7 +121,7 @@ class UsuariosControlador{
 
         // Manejo de errores durante la inclusión de archivos necesarios
         try {
-            require_once "../../config/conexion.php";
+            require_once "../../../config/conexion.php";
             require_once "../../modelo/usuariosModelo.php";
         } catch (Exception $e) {
             throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
@@ -164,7 +166,7 @@ class UsuariosControlador{
     public function numeroPaginas($filasPorPagina,$rol) {
     // Manejo de errores durante la inclusión de archivos necesarios
     try {
-        require_once "../../../modelo/usuariosModelo.php";
+        require_once "../../modelo/usuariosModelo.php";
     } catch (Exception $e) {
         throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
     }
@@ -193,7 +195,7 @@ class UsuariosControlador{
 */
     public function editar($id) {
         // Incluir el archivo de configuración y el modelo de usuario
-        require_once '../../config/conexion.php';
+        require_once '../../../config/conexion.php';
         require_once '../../modelo/usuariosModelo.php';
 
         // Crear una instancia del modelo de usuario
@@ -227,11 +229,11 @@ class UsuariosControlador{
  * @param int $trastero El ID del trastero asociado al usuario.
  * @return void
  */
-    public function actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol, $trastero) {        
+    public function actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol) {        
         try {   
-            require_once ('../../../modelo/usuariosModelo.php');
+            require_once ('../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
-            $usuario->editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol, $trastero);
+            $usuario->editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
 
             header('Location:usuariosLista.php');
             exit();
@@ -248,7 +250,7 @@ class UsuariosControlador{
  */
     public function eliminar($id) {
         try {
-            require_once ('../../../modelo/usuariosModelo.php');
+            require_once ('../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
             $usuario->eliminarUsuario($id);
 
@@ -285,7 +287,7 @@ public function nuevoUsuario(){
         }
         // archivos necesarios con manejo de errores
         try {
-            require_once "../../config/conexion.php";
+            require_once "../../../config/conexion.php";
             require_once '../../modelo/usuariosModelo.php';
         } catch (Exception $e) {
             throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());

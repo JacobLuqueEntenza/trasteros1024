@@ -193,8 +193,8 @@ class UsuariosModelo
  * @param int $trastero El ID del trastero asociado al usuario.
  * @return bool true si la modificación fue exitosa, false en caso contrario.
  */
-	public function editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol, $trastero) {
-		$sql = "UPDATE users SET nombre = :nombre, apellido_1 = :apellido1, apellido_2 = :apellido2, direccion = :direccion, telefono = :telefono, email = :email, pass = :pass, rol_id = :rol, trastero_id = :trastero WHERE id_user = :id";
+	public function editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol) {
+		$sql = "UPDATE users SET nombre = :nombre, apellido_1 = :apellido1, apellido_2 = :apellido2, direccion = :direccion, telefono = :telefono, email = :email, pass = :pass, rol_id = :rol WHERE id_user = :id";
 
 		try {
 			$conectar = $this->db->conectar();
@@ -208,7 +208,6 @@ class UsuariosModelo
 			$consulta->bindParam(':email', $email);
 			$consulta->bindParam(':pass', $pass);
 			$consulta->bindParam(':rol', $rol);
-			$consulta->bindParam(':trastero', $trastero);
 			$consulta->execute();
 			return true; //modificacion realizada con exito
 		} catch (PDOException $e) {
@@ -271,60 +270,61 @@ public function eliminarUsuario($id){
 
 
 	
-	public function agregarUsuarioRecibo($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol,$trastero,$fecha,$pagada) {
-        
-        // Hash de la contraseña
-        //$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
-
-        // SQL para insertar en la tabla users
-        $sql = "INSERT INTO users (nombre, apellido_1, apellido_2, direccion, telefono, email, pass, rol_id) VALUES (:nombre, :apellido1, :apellido2, :direccion, :telefono, :email, :pass, :rol)";
-		// Insertar en la tabla recibos
-		$sql2 = "INSERT INTO recibos (user_id, trastero_id, fecha, concepto, pagado) VALUES (:user_id, :trastero, :fecha, :concepto, :pagado)";
-
-        try {			
-
-            // Conectar a la base de datos
-            $conectar = $this->db->conectar();
-            $consulta = $conectar->prepare($sql);
-			// Iniciar una transacción
+	public function agregarUsuarioRecibo($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol, $trastero, $fecha, $pagada) {
+		// Hash de la contraseña
+		$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+	
+		// SQL para insertar en la tabla users
+		$sql = "INSERT INTO users (nombre, apellido_1, apellido_2, direccion, telefono, email, pass, rol_id) 
+				VALUES (:nombre, :apellido1, :apellido2, :direccion, :telefono, :email, :pass, :rol)";
+		
+		// SQL para insertar en la tabla recibos
+		$sql2 = "INSERT INTO recibos (user_id, trastero_id, fecha, concepto, pagado) 
+				 VALUES (:user_id, :trastero, :fecha, :concepto, :pagado)";
+	
+		try {            
+			// Conectar a la base de datos y comenzar la transacción
+			$conectar = $this->db->conectar();
 			$conectar->beginTransaction();
-            // Vincular los parámetros
-            $consulta->bindParam(':nombre', $nombre);
-            $consulta->bindParam(':apellido1', $apellido1);
-            $consulta->bindParam(':apellido2', $apellido2);
-            $consulta->bindParam(':direccion', $direccion);
-            $consulta->bindParam(':telefono', $telefono);
-            $consulta->bindParam(':email', $email);
-            $consulta->bindParam(':pass', $pass);//cambiar a $hashedPass
-            $consulta->bindParam(':rol', $rol);
-
-            // Ejecutar la consulta
-            $consulta->execute();
-
-			 // Obtener el ID del usuario recién insertado
+	
+			// Preparar y ejecutar la inserción en la tabla users
+			$consulta = $conectar->prepare($sql);
+			$consulta->bindParam(':nombre', $nombre);
+			$consulta->bindParam(':apellido1', $apellido1);
+			$consulta->bindParam(':apellido2', $apellido2);
+			$consulta->bindParam(':direccion', $direccion);
+			$consulta->bindParam(':telefono', $telefono);
+			$consulta->bindParam(':email', $email);
+			$consulta->bindParam(':pass', $hashedPass); // Cambiado a $hashedPass
+			$consulta->bindParam(':rol', $rol);
+			$consulta->execute();
+	
+			// Obtener el ID del usuario recién insertado
 			$userId = $conectar->lastInsertId();
-
-			
-			
+	
+			// Preparar y ejecutar la inserción en la tabla recibos
+			$concepto = "Alquiler de trastero"; // Ajusta el concepto según sea necesario
 			$consulta2 = $conectar->prepare($sql2);
 			$consulta2->bindParam(':user_id', $userId);
 			$consulta2->bindParam(':trastero', $trastero);
 			$consulta2->bindParam(':fecha', $fecha);
+			$consulta2->bindParam(':concepto', $concepto);
 			$consulta2->bindParam(':pagado', $pagada);
 			$consulta2->execute();
-
+	
 			// Confirmar la transacción
 			$conectar->commit();
-
-
-        } catch (PDOException $e) {
-			// Revertir la transacción si ocurre un error
+			return true;
+	
+		} catch (PDOException $e) {
+			// Revertir la transacción en caso de error
 			$conectar->rollBack();
-            // Manejo de errores
-            error_log("Error al agregar usuario: " . $e->getMessage());
-            return false;
-        }
-    }//fin agregarusuario 
+			// Manejo de errores
+			error_log("Error al agregar usuario: " . $e->getMessage());
+			return false;
+		}
+	} // fin de agregarUsuarioRecibo
+	
 
 	
 
