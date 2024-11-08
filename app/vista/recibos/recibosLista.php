@@ -5,6 +5,7 @@
     $recibos= new RecibosControlador();
     
     $pagina=isset($_GET['pagina']) ? $_GET['pagina'] :1;
+    
     //si la sesion no esta definida o el rol es solo usuario
     if(!isset($_SESSION['rol'])||$_SESSION['rol'] ==3){
         header('Location: /trastero1024/public/index.php');
@@ -37,13 +38,16 @@
     
     
     ?>
-        <img id="papeles" src="../../../public/multimedia/img/papeles.jpg" alt="papeles">
+
+<img id="papeles" src="../../../public/multimedia/img/papeles.jpg" alt="papeles">
+<div class="col-md-12">
+<div class="container mt-1 ">    
         <div class="containertext-center mb-5 ">            
-            <p class="h4 m-4">Te damos la bienvenida a nuestro servicio, diseñado para proporcionarte acceso exclusivo a un historial detallado de todos los recibos emitidos a tu nombre hasta la fecha. Desde las facturas más antiguas hasta las más recientes, nuestra plataforma te ofrece la comodidad de revisar y descargar tus recibos en cualquier momento y lugar. Con esta herramienta, podrás mantener un seguimiento preciso de tus transacciones, ayudándote a gestionar tus registros financieros de manera eficiente y sin complicaciones. Descubre la conveniencia y la tranquilidad que brinda tener todo tu historial de recibos al alcance de tus manos. ¡Explora ahora y simplifica la gestión de tus finanzas!"</p>
+            <p class="h4 mt-4 text-justify">Te damos la bienvenida a nuestro servicio, diseñado para proporcionarte acceso exclusivo a un historial detallado de todos los recibos emitidos a tu nombre hasta la fecha. Desde las facturas más antiguas hasta las más recientes, nuestra plataforma te ofrece la comodidad de revisar y descargar tus recibos en cualquier momento y lugar. Con esta herramienta, podrás mantener un seguimiento preciso de tus transacciones, ayudándote a gestionar tus registros financieros de manera eficiente y sin complicaciones. Descubre la conveniencia y la tranquilidad que brinda tener todo tu historial de recibos al alcance de tus manos. ¡Explora ahora y simplifica la gestión de tus finanzas!"</p>
         </div>
         
-        <div class="container mt-1 ">
         
+           
             <form action="" method="get" name="fechas">
                 <div class="row align-items-center text-center justify-content-center">
                     <div class="col-md-4">
@@ -62,7 +66,7 @@
                     </div>
                 </div>
             </form>
-                <div class="col-md-12">
+             
                     <div class="card">
                         <div class="card-header h1 text-center">
                             Lista de Recibos
@@ -80,7 +84,7 @@
                                         <th scope="col" class="col-2">Forma de Pago</th>
 
                                         <?php echo (isset($_SESSION['usuario']) && isset($_SESSION['rol']) && $_SESSION['rol'] == 1) ? '
-                                        <th scope="col" class="" colspan="2">Opciones</th>
+                                        <th scope="col" class="" colspan="3">Opciones</th>
                                         ' : ''; ?> 
                                     </tr>
                                 </thead>
