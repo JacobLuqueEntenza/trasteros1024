@@ -46,7 +46,7 @@
             <h1 class="h1 text-center mb-5">Solo visible para administradores</h1> 
             <p class="h4 m-4">Desde aquí el administrador puede gestionar todo lo referente a los usuarios, es decir, actualizar datos personales, roles y eliminar usuarios. La contraseña solo la podrá modificar el usuario.</p>
 </div>
-
+<div class="card">
 <div class="col-md-12">        
     <div class="container mt-5 ">
         <button type="button" class="btn btn-success mb-3 btn-lg" onclick="window.location.href='usuarioNuevo.php'">Añadir Usuario</button>
@@ -62,7 +62,7 @@
             </div>              
         </form>
                 
-        <div class="card">
+        
             <div class="card-header h1 text-center">
                                 Lista de Usuarios
             </div>
