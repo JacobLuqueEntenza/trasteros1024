@@ -88,24 +88,42 @@
 <?php } ?>
        
        <div class="container mt-3 ">
-           <div class="btnTrasteros mb-4 ml-0 mr-0"> 
-                <a href="#tablaTrasteros" onclick="mostrarTrasterosDisponibles()">     
-                    <div class="btnTrasteroa">
-                        <h5>Trasteros Disponibles</h5>               
-                    </div>
-                </a> 
-                <a href="#tablaTrasteros" onclick="refrescarPagina()"> 
-                    <div class="btnTrasteroa">
-                        <h5>Lista Trasteros completa</h5>               
-                    </div>
-                </a>
-            </div>
-           <div class="row justify-content-center">
+       <?php  if (isset( $_SESSION['rol']) && $_SESSION['rol'] == 1){
+
+            } else { ?>
+                 <div class="btnTrasteros mb-4 ml-0 mr-0"> 
+                    <a href="#tablaTrasteros" onclick="mostrarTrasterosDisponibles()">     
+                        <div class="btnTrasteroa">
+                            <h5>Trasteros Disponibles</h5>               
+                        </div>
+                    </a> 
+                    <a href="#tablaTrasteros" 
+                    onclick="refrescarPagina()"> 
+                        <div class="btnTrasteroa">
+                            <h5>Lista Trasteros completa</h5>               
+                        </div>
+                    </a>
+                </div>
+            <?php  
+            }
+            ?>   
+           
+            <div class="row justify-content-center">
                <div class="col-md-12">
                    <div class="card">
-                       <div class="card-header h1 text-center">
+                   <?php  if (isset( $_SESSION['rol']) && $_SESSION['rol'] == 1){?>
+                        <div class="card-header h1 text-center">
+                           Clientes de Trastero
+                        </div>
+                    <?php 
+                    } else { ?>
+                        <div class="card-header h1 text-center">
                            Lista de Trasteros
-                       </div>
+                        </div>
+                    <?php  
+                    }
+                    ?> 
+                       
                        <div class="p-0">
                            <table class="table text-center" id="tablaTrasteros">
                                <thead>
