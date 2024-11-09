@@ -6,24 +6,25 @@
  * para filtrar la lista de usuarios según la opción seleccionada.
  */
 $(document).ready(function() {
-    // Recuperamos el valor seleccionado del localStorage
+    // Recupera el valor seleccionado desde localStorage
     var selectedOption = localStorage.getItem('selectedOption');
+    
     if (selectedOption) {
-        // Establecemos el valor seleccionado al select
+        // Establece el valor seleccionado en el elemento select
         $('#tipoUsers').val(selectedOption);
     }
 
-    // Manejamos el cambio de opción
+    // Maneja el cambio de opción en el select
     $("#tipoUsers").change(function() {
-        // Guardamos el valor seleccionado en el localStorage
+        // Guarda el valor seleccionado en localStorage
         var selectedValue = $(this).val();
         localStorage.setItem('selectedOption', selectedValue);
         
-        // Enviamos el formulario
+        // Envía el formulario
         $("#formUsers").submit();
     });
-    
 });
+
 
 
 /**

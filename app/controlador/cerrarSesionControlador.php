@@ -18,7 +18,7 @@ function cerrarSesion() {
     session_destroy();
 
     // Redirigir a la página de inicio de sesión u otra página deseada
-    header("Location: /proyecto-daw/public/index.php");
+    header("Location: /trasteros1024/public/index.php");
     exit;
 }
 

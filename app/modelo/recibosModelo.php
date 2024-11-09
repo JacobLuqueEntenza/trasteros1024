@@ -175,14 +175,15 @@ public function __construct() {
  * @param int $trastero El nuevo ID del trastero asociado al recibo.
  * @return bool true si la modificación se realizó con éxito, false si falló.
  */
-	public function editarRecibo($id_recibo,$fecha,$pagada,$formaPago,$id_user,$trastero){
+	public function editarRecibo($id_recibo,$fecha,$concepto,$pagada,$formaPago,$id_user,$trastero){
 
-		$sql="UPDATE recibos SET fecha= :fecha, pagado= :pagada, formaPago= :formaPago, user_id= :user, trastero_id= :trastero WHERE id_recibo= :id_recibo";	
+		$sql="UPDATE recibos SET fecha= :fecha,concepto= :concepto, pagado= :pagada, formaPago= :formaPago, user_id= :user, trastero_id= :trastero WHERE id_recibo= :id_recibo";	
 		try{
 		$conectar=$this->db->conectar();
 		$consulta=$conectar->prepare($sql);
 		$consulta->bindParam(':id_recibo',$id_recibo);
 		$consulta->bindParam(':fecha',$fecha);
+		$consulta->bindParam(':concepto',$concepto);
 		$consulta->bindParam(':pagada',$pagada);
 		$consulta->bindParam(':formaPago',$formaPago);
 		$consulta->bindParam(':user',$id_user);

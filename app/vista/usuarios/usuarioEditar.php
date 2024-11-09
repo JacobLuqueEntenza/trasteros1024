@@ -60,7 +60,7 @@ require_once ('../../controlador/usuariosControlador.php');
           ?>
     
     <div class="container col-md-4 ">
-        <form action="" method="POST" name="actualizar" class="mt-6">
+        <form action="" method="POST" name="" class="mt-6">
             <legend class="text-center mb-4 h1"><strong>Modificar usuario</strong></legend>
             <div class="form-group">
                 <input type="text" class="form-control" id="id" name="id" value="<?php echo $usuario['id_user']?>">

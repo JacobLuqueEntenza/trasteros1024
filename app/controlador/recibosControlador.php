@@ -142,11 +142,11 @@ public function guardarRecibo($fecha, $pagada, $formaPago, $id_user, $trastero) 
  * @param int $id_user El nuevo ID del usuario asociado al recibo.
  * @param int $trastero El nuevo ID del trastero asociado al recibo.
  */
-    public function actualizar($id_recibo,$fecha, $pagada, $formaPago, $id_user, $trastero) {        
+    public function actualizar($id_recibo,$fecha,$concepto, $pagada, $formaPago, $id_user, $trastero) {
         try {   
             require_once ('../../modelo/recibosModelo.php');
             $usuario = new RecibosModelo();
-            $usuario->editarRecibo($id_recibo,$fecha, $pagada, $formaPago, $id_user, $trastero);
+            $usuario->editarRecibo($id_recibo,$fecha,$concepto, $pagada, $formaPago, $id_user, $trastero);
 
             header('Location:recibosLista.php');
             exit();
