@@ -148,7 +148,7 @@ public function guardarRecibo($fecha, $pagada, $formaPago, $id_user, $trastero) 
             $usuario = new RecibosModelo();
             $usuario->editarRecibo($id_recibo,$fecha,$concepto, $pagada, $formaPago, $id_user, $trastero);
 
-            header('Location:recibosLista.php');
+            //header('Location:recibosLista.php');
             exit();
         } catch(Exception $e) {
             echo 'Ocurrió un error al actualizar recibo ' . $e->getMessage();

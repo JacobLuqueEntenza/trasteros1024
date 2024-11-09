@@ -28,10 +28,12 @@ if (isset($_GET['id'])) {
 } else {
     echo("No tengo id del recibo");
 }
+var_dump($recibo);
+//$controladorRecibo->actualizar(81,"2024/12/11", "Noviembre",false, "efectivo", 179, 14);
 
 // Actualización del recibo
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['actualizar'])) {
+    if (isset($_POST['editarRecibo'])) {
         $id_recibo = $_POST['id'];
         $trastero = $_POST['trastero'];
         $id_user = $_POST['id_user'];
@@ -39,13 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $formaPago = $_POST['formaPago'];
         $pagada = $_POST['pagado'];
         $concepto = $_POST['concepto'];
+        var_dump($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
 
         // Llama a la función de actualización
         $controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
+        exit();
+    }else{
+        echo "<script>alert('No se puede editar el recibo');</script>";
 
         exit();
-    }
-
+    }; 
+    
     // Eliminar el recibo
     if (isset($_POST['eliminar'])) {
         $id = $_POST['id'];
@@ -59,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="form-container">
-                <form action="" method="POST" class="mt-5" name="nuevoRecibo">
+                <form action="" method="POST" class="mt-5" name="">
                     <legend class="text-center h1 mb-3 mt-5">Modificar o Borrar Recibo</legend>
                     
                     <div class="form-group">
@@ -106,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success mt-3" value="actualizar" name="actualizar">Modificar Recibo</button>
+                    <button type="submit" class="btn btn-success mt-3" value="actualizar" name="editarRecibo">Modificar Recibo</button>
                     <button type="submit" class="btn btn-danger mt-3" value="eliminar" name="eliminar">Eliminar Recibo</button>
                 </form>
             </div>
