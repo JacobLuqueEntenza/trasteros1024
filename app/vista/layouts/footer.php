@@ -1,4 +1,8 @@
+<<<<<<< HEAD
         <footer class="footer">
+=======
+<footer class="footer">
+>>>>>>> trasteros
             <div class="footarjeta">
                 <a href="#">Catálogo de Trasteros</a>
                 <a href="#">Proceso de Alquiler</a>

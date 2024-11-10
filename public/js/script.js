@@ -110,6 +110,7 @@ function mostrarVideo(url) {
     video.play();
 };
 
+<<<<<<< HEAD
 
 /**
  * cuando carge la pagina nos aparezca el loader
@@ -133,3 +134,5 @@ window.addEventListener("DOMContentLoaded", () => {
   const hideLoader = () => {
     loader.style.display='flex';
   }*/
+=======
+>>>>>>> trasteros

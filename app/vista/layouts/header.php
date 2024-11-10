@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="/trasteros1024/public/css/estilos.css">
     <!-- Enlaza los estilos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    
+<<<<<<< HEAD
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">      
+=======
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">  
+        
+>>>>>>> trasteros
 </head>
 
 <body class="hidden">
@@ -45,7 +50,11 @@
 
     <?php
          }else{ ?>
+<<<<<<< HEAD
              <li class="liMenu"><a class="aMenu" href="">Hola, <?php echo $_SESSION['usuario']; ?>  </a></li>
+=======
+             <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/usuarios/usuarioEditar.php">Hola, <?php echo $_SESSION['usuario']; ?>  </a></li>
+>>>>>>> trasteros
              <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/controlador/cerrarSesionControlador.php">CerrarSesión</a></li>        
     <?php
     };
