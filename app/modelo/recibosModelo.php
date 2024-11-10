@@ -181,10 +181,10 @@ class RecibosModelo
 	 * @param int $trastero El nuevo ID del trastero asociado al recibo.
 	 * @return bool true si la modificación se realizó con éxito, false si falló.
 	 */
-	public function editarRecibo($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero)
+	public function editarRecibo($id_recibo, $fecha, $concepto, $pagada, $formaPago)
 	{
 
-		$sql = "UPDATE recibos SET fecha= :fecha,concepto= :concepto, pagado= :pagada, formaPago= :formaPago, user_id= :user, trastero_id= :trastero WHERE id_recibo= :id_recibo";
+		$sql = "UPDATE recibos SET fecha= :fecha,concepto= :concepto, pagado= :pagada, formaPago= :formaPago WHERE id_recibo= :id_recibo";
 		try {
 			$conectar = $this->db->conectar();
 			$consulta = $conectar->prepare($sql);
@@ -193,8 +193,7 @@ class RecibosModelo
 			$consulta->bindParam(':concepto', $concepto);
 			$consulta->bindParam(':pagada', $pagada);
 			$consulta->bindParam(':formaPago', $formaPago);
-			$consulta->bindParam(':user', $id_user);
-			$consulta->bindParam(':trastero', $trastero);
+			
 			$consulta->execute();
 			return true; //modificacion realizada con exito
 		} catch (PDOException $e) {

@@ -38,25 +38,14 @@
         if (isset($_POST['editarRecibo'])) {
             echo 'entro en post';
             $id_recibo = $_POST['id'];
-            echo $id_recibo;
-            $trastero = $_POST['trastero'];
-            echo $trastero;
-            $id_user = $_POST['id_user'];
-            echo $id_user;
             $fecha = $_POST['fecha'];
-            echo $fecha;
-            $formaPago = "bizi";
-            ;
-            echo $formaPago;
+            $formaPago = $_POST['formaPago'];
             $pagada = $_POST['pagado'];
-            ;
-            echo $pagada;
-            $concepto = $_POST['concepto'];
-            echo $concepto;
+            $concepto = $_POST['concepto'];            
             //var_dump($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
     
             // Llama a la función de actualización
-            $controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
+            $controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago);
             //echo ($controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero));
             exit();
         } else if (isset($_POST['eliminar'])) {

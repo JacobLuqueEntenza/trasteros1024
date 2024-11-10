@@ -148,14 +148,14 @@ class RecibosControlador
      * @param int $id_user El nuevo ID del usuario asociado al recibo.
      * @param int $trastero El nuevo ID del trastero asociado al recibo.
      */
-    public function actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero)
+    public function actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago)
     {
         try {
             require_once('../../modelo/recibosModelo.php');
             $usuario = new RecibosModelo();
-            $usuario->editarRecibo($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
+            $usuario->editarRecibo($id_recibo, $fecha, $concepto, $pagada, $formaPago);
 
-            //header('Location:recibosLista.php');
+            header('Location:recibosLista.php');
             exit();
         } catch (Exception $e) {
             echo 'Ocurrió un error al actualizar recibo ' . $e->getMessage();
