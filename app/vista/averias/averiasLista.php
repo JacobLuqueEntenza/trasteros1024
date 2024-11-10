@@ -54,15 +54,17 @@ $totalPaginas = $averias->numeroPaginas($filasPorPagina);
                                 <td><?php echo $averia['descripcion'] ?></td>
                                 <td><?php echo $averia['estado'] ?></td>
                                 <td><?php echo $averia['trastero_id'] ?></td>
+                                <?php if (isset($_SESSION['usuario']) && isset($_SESSION['rol']) && $_SESSION['rol'] == 1): ?>
+                                    <td>
+                                        <a href="averiaEditar.php?id=<?php echo $averia['id_averia']; ?>"><img class="ediborra"
+                                                src="/trasteros1024/public/multimedia/img/editar.ico" alt="Editar"></a>
+                                    </td>
+                                    <td>
+                                        <a href="averiaBorrar.php?id=<?php echo $averia['id_averia']; ?>"><img class="ediborra"
+                                                src="/trasteros1024/public/multimedia/img/borrar.ico" alt="Eliminar"></a>
+                                    </td>
+                                <?php endif; ?>
 
-                                <td>
-                                    <a href='averiaEditar.php?id=<?php echo $averia['id_averia']; ?>'><img class="ediborra"
-                                            src="/trasteros1024/public/multimedia/img/editar.ico" alt="Editar"></a>
-                                </td>
-                                <td>
-                                    <a href='averiaEditar.php?id=<?php echo $averia['id_averia']; ?>'><img class="ediborra"
-                                            src="/trasteros1024/public/multimedia/img/borrar.ico" alt="Eliminar"></a>
-                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

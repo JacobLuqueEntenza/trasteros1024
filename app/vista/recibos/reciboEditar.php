@@ -30,35 +30,41 @@
     } else {
         echo ("No tengo id del recibo");
     }
-    var_dump($recibo);
-    //$controladorRecibo->actualizar(81,"2024/12/11", "Noviembre",false, "efectivo", 179, 14);
+    //var_dump($recibo);
+    //$controladorRecibo->actualizar(81,"2024/12/11", "zxczxczcz",true, "bixum", 179, 14);
     
     // Actualización del recibo
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST['editarRecibo'])) {
+            echo 'entro en post';
             $id_recibo = $_POST['id'];
+            echo $id_recibo;
             $trastero = $_POST['trastero'];
+            echo $trastero;
             $id_user = $_POST['id_user'];
+            echo $id_user;
             $fecha = $_POST['fecha'];
-            $formaPago = $_POST['formaPago'];
+            echo $fecha;
+            $formaPago = "bizi";
+            ;
+            echo $formaPago;
             $pagada = $_POST['pagado'];
+            ;
+            echo $pagada;
             $concepto = $_POST['concepto'];
-            var_dump($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
-
+            echo $concepto;
+            //var_dump($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
+    
             // Llama a la función de actualización
             $controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero);
+            //echo ($controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero));
             exit();
-        } else {
-            echo "<script>alert('No se puede editar el recibo');</script>";
-
-            exit();
-        }
-        ;
-
-        // Eliminar el recibo
-        if (isset($_POST['eliminar'])) {
+        } else if (isset($_POST['eliminar'])) {
             $id = $_POST['id'];
             $controladorRecibo->eliminar($id);
+            exit();
+        } else {
+            echo "<script>alert('No paso de ti');</script>";
             exit();
         }
     }
@@ -102,7 +108,7 @@
                             <label class="label-grande" for="pagada">Pagada:</label>
                             <select name="pagado" class="form-select mb-3">
                                 <option value="<?php echo $recibo['pagado']; ?>">
-                                    <?php echo ($recibo['pagado'] == 1) ? 'Si' : 'No'; ?>
+                                    <?php echo ($recibo['pagado'] == true) ? 'Si' : 'No'; ?>
                                 </option>
                                 <option value="1">Si</option>
                                 <option value="0">No</option>
@@ -112,14 +118,14 @@
                         <div class="form-group">
                             <label class="label-grande" for="formaPago">Forma de Pago:</label>
                             <select name="formaPago" class="form-select mb-3">
-                                <option value="<?php echo $recibo['formaPago']; ?>">
-                                    <?php echo $recibo['formaPago']; ?>
-                                </option>
-                                <option value="bizum">Bizum</option>
-                                <option value="efectivo">Efectivo</option>
-                                <option value="banco">Banco</option>
+                                <option value="bizum" <?php echo ($recibo['formaPago'] == 'bizum') ? 'selected' : ''; ?>>
+                                    Bizum</option>
+                                <option value="efectivo" <?php echo ($recibo['formaPago'] == 'efectivo') ? 'selected' : ''; ?>>Efectivo</option>
+                                <option value="banco" <?php echo ($recibo['formaPago'] == 'banco') ? 'selected' : ''; ?>>
+                                    Banco</option>
                             </select>
                         </div>
+
 
                         <button type="submit" class="btn btn-success mt-3" value="actualizar"
                             name="editarRecibo">Modificar Recibo</button>

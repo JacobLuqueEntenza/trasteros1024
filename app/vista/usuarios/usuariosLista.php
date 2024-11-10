@@ -95,15 +95,15 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
                                 <td><?php echo $usuario['rol'] ?></td>
                                 <td>
                                     <a href='usuarioEditar.php?id=<?php echo $usuario['id_user']; ?>'><img class="ediborra"
-                                            src="/proyecto-daw/public/img/editar.ico" alt="Editar"></a>
+                                            src="/trasteros1024/public/multimedia/img/editar.ico" alt="Editar"></a>
                                 </td>
                                 <td>
                                     <a href='usuarioEditar.php?id=<?php echo $usuario['id_user']; ?>'><img class="ediborra"
-                                            src="/proyecto-daw/public/img/borrar.ico" alt="Eliminar"></a>
+                                            src="/trasteros1024/public/multimedia/img/borrar.ico" alt="Eliminar"></a>
                                 </td>
                                 <?php echo ($usuario['rol_id'] == 2) ?
                                     '<td>
-                                                <a href="../recibos/reciboNuevo.php?id=' . $usuario['id_user'] . '"><img class="ediborra" src="/proyecto-daw/public/img/recibo.ico" alt="recibo"></a>
+                                                <a href="../recibos/reciboNuevo.php?id=' . $usuario['id_user'] . '"><img class="ediborra" src="/trasteros1024/public/multimedia/img/recibo.ico" alt="recibo"></a>
                                             </td>' : ''; ?>
 
 
