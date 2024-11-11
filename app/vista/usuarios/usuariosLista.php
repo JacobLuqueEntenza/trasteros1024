@@ -36,7 +36,7 @@ $totalPaginas = $usuarios->numeroPaginas($filasPorPagina, $rol);
 <?php
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
-    header('Location: /proyecto-daw/public/index.php');
+    header('Location: /trasteros1024/public/index.php');
     exit;
 }
 ;

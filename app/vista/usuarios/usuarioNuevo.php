@@ -26,24 +26,23 @@
         $apellido2 = $_POST['apellido2'];
         $direccion = $_POST['direccion'];
         $telefono = $_POST['telefono'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $comfirma_pass = $_POST['comfirma_pass'];
+        $email = $_POST['email']; 
+        $pass = $_POST['pass'];       
+        if ($_SESSION['rol'] != 1) {            
+            $comfirma_pass = $_POST['comfirma_pass'];
+            // Verificar si las contraseñas coinciden
+            if ($pass !== $comfirma_pass) {
+                echo "Las contraseñas no coinciden.";
+                exit();
+            };
+        };
         $rol = $_POST['rol'] ?? 3;
 
-        // Verificar si las contraseñas coinciden
-        if ($pass !== $comfirma_pass) {
-            echo "Las contraseñas no coinciden.";
-            exit();
-        }
-        ;
-
-
-
         $controlador->guardaUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
-
     }
+
     ?>
+
     <div class="container col-md-4">
         <form action="" method="POST" name="nuevo" class="">
             <legend class="text-center mb-4 h1"><strong>Crea tu cuenta</strong></legend>
@@ -65,17 +64,20 @@
             <div class="form-group">
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
             </div>
-            <div class="form-group">
+             <div class="form-group">
                 <input type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña">
             </div>
+            <?php if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) { ?>           
             <div class="form-group">
                 <input type="password" class="form-control" id="comfirma_pass" name="comfirma_pass"
                     placeholder="Confirmar Contraseña">
             </div>
+            <?php }else{}; ?>
+            
 
-            <div class="form-group text-center mt-4">
-                <button type="submit" class="btn btn-success mr-4">Registrarse</button>
-                <button type="button" class="btn btn-danger ml-4"
+            <div class="form-group text-center mt-4 d-flex justify-content-between">
+                <button type="submit" class="btn btn-success">Registrarse</button>
+                <button type="button" class="btn btn-danger"
                     onclick="location.href='../../../public/index.php'">Cancelar</button>
             </div>
         </form>

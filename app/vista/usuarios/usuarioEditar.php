@@ -46,8 +46,7 @@
                 echo "Las contraseñas no coinciden.";
                 exit();
             } else {
-            }
-            ;
+            };
 
             // Intentar actualizar el usuario y mostrar el resultado
             if ($controlador->actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol)) {
@@ -98,10 +97,12 @@
                 <input type="password" class="form-control" id="pass" name="pass"
                     value="<?php echo $usuario['pass'] ?>">
             </div>
+            <?php if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) { ?>           
             <div class="form-group">
                 <input type="password" class="form-control" id="comfirma_pass" name="comfirma_pass"
                     placeholder="Confirmar Contraseña">
             </div>
+            <?php }else{}; ?>
             <?php
             if ($_SESSION['rol'] == 1) {
                 echo "<select name='selection' class='form-control'>";
@@ -129,7 +130,7 @@
             }
             ?>
 
-            <div class="form-group text-center mt-4">
+            <div class="form-group text-center mt-4 d-flex justify-content-between">
                 <button type="submit" class="btn btn-success mr-4" name="actualizar">Actualizar</button>
                 <button type="button" class="btn btn-danger ml-4"
                     onclick="location.href='../../../app/vista/usuarios/usuariosLista.php'">Cancelar</button>

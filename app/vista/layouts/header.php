@@ -31,6 +31,10 @@
                 </li>
                 <?php
                 session_start();
+                if (isset($_SESSION['usuario'])){
+                    $usuario_actual=$_SESSION['id_user'];
+                };
+                
                 //si el rol es distinto de tres nos aparecera pagos y recibos
                 if (isset($_SESSION['usuario']) && isset($_SESSION['rol']) && $_SESSION['rol'] != 3) { ?>
                     <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/averias/averiasLista.php">Averias</a>
@@ -50,11 +54,11 @@
 
                     <li class="liMenu"><img id="imglogin" src="/trasteros1024/public/multimedia/img/Login.ico"
                             alt="login"><a class="aMenu" href="/trasteros1024/app/vista/usuarios/login.php">Login</a></li>
-                    <!--<li class="liMenu"><a class="aMenu" href="/proyecto-daw/app/vista/usuarios/usuarioNuevo.php">Registrate</a></li> -->
+                    <!--<li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/usuarios/usuarioNuevo.php">Registrate</a></li> -->
 
     <?php
          }else{ ?>
-             <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/usuarios/usuarioEditar.php">Hola, <?php echo $_SESSION['usuario']; ?>  </a></li>
+             <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/usuarios/usuarioEditar.php?id=<?php echo $usuario_actual; ?>">Hola, <?php echo $_SESSION['usuario']; ?>  </a></li>
              <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/controlador/cerrarSesionControlador.php">CerrarSesión</a></li>        
     <?php
     };
