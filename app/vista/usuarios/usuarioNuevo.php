@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,36 +9,38 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="/trasteros1024/public/js/script.js"></script>
 </head>
+
 <body class="d-flex justify-content-center align-items-center vh-100">
 
-<?php
+    <?php
 
     session_start();
 
-    require_once ('../../controlador/usuariosControlador.php');
-    $controlador=new UsuariosControlador();
+    require_once('../../controlador/usuariosControlador.php');
+    $controlador = new UsuariosControlador();
 
     //si tenemos el post asignamos variables
-    if(isset($_POST) && !empty($_POST)){
-    $nombre=$_POST['nombre'];
-    $apellido1=$_POST['apellido1'];
-    $apellido2=$_POST['apellido2'];
-    $direccion=$_POST['direccion'];
-    $telefono=$_POST['telefono'];
-    $email=$_POST['email'];
-    $pass=$_POST['pass'];
-    $comfirma_pass=$_POST['comfirma_pass'];
-    $rol=$_POST['rol']?? 3;
+    if (isset($_POST) && !empty($_POST)) {
+        $nombre = $_POST['nombre'];
+        $apellido1 = $_POST['apellido1'];
+        $apellido2 = $_POST['apellido2'];
+        $direccion = $_POST['direccion'];
+        $telefono = $_POST['telefono'];
+        $email = $_POST['email'];
+        $pass = $_POST['pass'];
+        $comfirma_pass = $_POST['comfirma_pass'];
+        $rol = $_POST['rol'] ?? 3;
 
-    // Verificar si las contraseñas coinciden
-    if ($pass !== $comfirma_pass) {
-        echo "Las contraseñas no coinciden.";
-        exit();
-    };
+        // Verificar si las contraseñas coinciden
+        if ($pass !== $comfirma_pass) {
+            echo "Las contraseñas no coinciden.";
+            exit();
+        }
+        ;
 
-   
 
-   $controlador->guardaUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
+
+        $controlador->guardaUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
 
     }
     ?>
@@ -66,17 +69,19 @@
                 <input type="password" class="form-control" id="pass" name="pass" placeholder="Contraseña">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="comfirma_pass" name="comfirma_pass" placeholder="Confirmar Contraseña">
+                <input type="password" class="form-control" id="comfirma_pass" name="comfirma_pass"
+                    placeholder="Confirmar Contraseña">
             </div>
-           
+
             <div class="form-group text-center mt-4">
                 <button type="submit" class="btn btn-success mr-4">Registrarse</button>
-                <button type="button" class="btn btn-danger ml-4" onclick="location.href='../../../public/index.php'">Cancelar</button>
+                <button type="button" class="btn btn-danger ml-4"
+                    onclick="location.href='../../../public/index.php'">Cancelar</button>
             </div>
         </form>
     </div>
 
-    
+
 
     <!-- Bootstrap JS -->
 
@@ -84,4 +89,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
