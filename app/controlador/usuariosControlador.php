@@ -41,7 +41,7 @@ class UsuariosControlador
             $usuario = new UsuariosModelo();
             $existeUsuario = $usuario->comprobarLogin($email, $pass);
 
-            if ($existeUsuario != 0) {
+            if ($existeUsuario && password_verify($pass, $existeUsuario['pass'])) {
                 session_start();
                 $_SESSION['usuario'] = $existeUsuario['nombre'];
                 $_SESSION['id_user'] = $existeUsuario['id_user'];
@@ -81,6 +81,8 @@ class UsuariosControlador
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new Exception('El correo electrónico no es válido.');
         }
+        // Hash de la contraseña
+        $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
         // archivos necesarios con manejo de errores
         try {
             require_once "../../../config/conexion.php";
@@ -92,7 +94,7 @@ class UsuariosControlador
         // Intentar agregar el usuario
         try {
             $usuario = new UsuariosModelo();
-            $usuario->agregarUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
+            $usuario->agregarUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $hashedPass, $rol);
 
         } catch (Exception $e) {
             throw new Exception('Error al guardar el usuario en la base de datos: ' . $e->getMessage());
@@ -100,7 +102,6 @@ class UsuariosControlador
 
         // Redirigir a la lista de usuarios
         header('Location: usuariosLista.php');
-        return true;
         exit();
     }//fin guardaUsuario
 
@@ -240,6 +241,10 @@ class UsuariosControlador
         try {
             require_once('../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
+            // Hash de la nueva contraseña si se proporciona
+            if (!empty($pass)) {
+                $pass = password_hash($pass, PASSWORD_DEFAULT);
+            }
             $usuario->editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
 
             header('Location:usuariosLista.php');

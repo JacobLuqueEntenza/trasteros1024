@@ -36,11 +36,10 @@ class UsuariosModelo
 		$sql = "	SELECT u.nombre, u.id_user, u.rol_id,u.email,u.pass, r.trastero_id
 				FROM users u 
 				LEFT JOIN recibos r ON id_user=user_id 
-				WHERE email= :email AND pass= :pass";
+				WHERE email= :email";
 		$conectar = $this->db->conectar();
 		$consulta = $conectar->prepare($sql);
 		$consulta->bindParam(':email', $email);
-		$consulta->bindParam(':pass', $pass);
 		$consulta->execute();
 		$usuario = $consulta->rowCount();
 		$usuario = $consulta->fetch(PDO::FETCH_ASSOC);
