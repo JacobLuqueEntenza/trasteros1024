@@ -36,7 +36,11 @@
             $telefono = $_POST['telefono'];
             $email = $_POST['email'];
             $pass = $_POST['pass'];
-            $comfirma_pass = $_POST['comfirma_pass'];
+            if(isset ($comfirma_pass)){
+                $comfirma_pass = $_POST['comfirma_pass'];
+            }else{
+                $comfirma_pass = $pass;
+            };
 
             // Si no está vacío el campo de selección, asignarlo; si no, rol 3 por defecto
             $rol = isset($_POST['selection']) ? $_POST['selection'] : 3;
@@ -49,14 +53,17 @@
             };
 
             // Intentar actualizar el usuario y mostrar el resultado
-            if ($controlador->actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol)) {
-                echo "Usuario actualizado correctamente.";
-            } else {
-                echo "Error al actualizar el usuario.";
-            }
-            ;
+            $controlador->actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
             exit();
-        }
+        };
+        //eliminamos el usuario
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            if (isset($_POST['eliminar'])) {
+                $id=$_POST['id'];
+                $controlador->eliminar($id);
+            exit();
+            };
+        };
     }
 
 
@@ -131,8 +138,9 @@
             ?>
 
             <div class="form-group text-center mt-4 d-flex justify-content-between">
-                <button type="submit" class="btn btn-success mr-4" name="actualizar">Actualizar</button>
-                <button type="button" class="btn btn-danger ml-4"
+                <button type="submit" class="btn btn-success" name="actualizar">Actualizar</button>
+                <button type="submit" class="btn btn-warning" name="eliminar" value="Eliminar">Eliminar</button>
+                <button type="button" class="btn btn-danger"
                     onclick="location.href='../../../app/vista/usuarios/usuariosLista.php'">Cancelar</button>
             </div>
         </form>

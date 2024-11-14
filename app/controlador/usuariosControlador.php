@@ -241,7 +241,6 @@ class UsuariosControlador
             require_once('../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
             $usuario->editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
-
             header('Location:usuariosLista.php');
             exit();
         } catch (Exception $e) {
