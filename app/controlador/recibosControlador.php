@@ -94,7 +94,7 @@ class RecibosControlador
      * @param int $id_user El ID del usuario asociado al recibo.
      * @param int $trastero El ID del trastero asociado al recibo.
      */
-    public function guardarRecibo($fecha, $pagada, $formaPago, $id_user, $trastero)
+    public function guardarRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto)
     {
         // Incluir los archivos necesarios
         require_once "../../../config/conexion.php";
@@ -110,7 +110,21 @@ class RecibosControlador
         header('Location: recibosLista.php');
     }//fin guardarRecibo
 
+    public function asignarTrastero($fecha, $id_user, $trastero, $concepto)
+    {
+        // Incluir los archivos necesarios
+        require_once "../../../config/conexion.php";
+        require_once '../../modelo/recibosModelo.php';
 
+        // Instanciar el modelo de recibos
+        $recibos = new RecibosModelo();
+
+        // Guardar el nuevo recibo en la base de datos
+        $recibos->trasteroAsignado($fecha, $id_user, $trastero, $concepto);
+
+        // Redirigir a la lista de recibos después de guardar
+        //header('Location: ../trasteros/trasteros.php');
+    }//fin guardarRecibo
 
     /**
      * Obtiene los datos de un recibo por su ID para su edición.

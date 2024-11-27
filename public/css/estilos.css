@@ -217,6 +217,23 @@ header {
 /*-----------------------Fin de INDEX ---------------------------------*/
 /*-----------------------Fin de INDEX ---------------------------------*/
 
+
+
+
+/*-----------------------PAGINA USUARIOS------------------------------*/
+/*-----------------------PAGINA USUARIOS------------------------------*/
+
+#fotoUsuarios{
+  width: 100%;
+  height: 90vh;
+}
+/*-----------------------FIN USUARIOS------------------------------*/
+
+
+
+
+
+
 /*-----------------------PAGINA TRASTEROS------------------------------*/
 /*-----------------------PAGINA TRASTEROS------------------------------*/
 .galeriaTrasteros {
@@ -225,7 +242,7 @@ header {
   gap: 0.5em;
   margin: 0 2rem;
 }
-.galeriaTrasteros > div {
+.galeriaTrasteros>div {
   flex: 1;
   border-radius: 1rem;
   background-position: center;
@@ -233,21 +250,21 @@ header {
   background-size: auto 100%;
   transition: all 0.8s cubic-bezier(0.25, 0.4, 0.45, 1.4);
 }
-.galeriaTrasteros > div:hover {
+.galeriaTrasteros>div:hover {
   flex: 5;
   border-radius: 1rem;
 }
 .contenedorTrasteros {
   margin-top: 3rem;
 }
-.contenedorTrasteros > h2,
-.contenedorTrasteros > h3 {
+.contenedorTrasteros>h2,
+.contenedorTrasteros>h3 {
   text-align: center;
 }
-.contenedorTrasteros > h2 {
+.contenedorTrasteros>h2 {
   font-size: var(--size_h2);
 }
-.contenedorTrasteros > h3 {
+.contenedorTrasteros>h3 {
   font-size: var(--size_h3);
 }
 .divTrasteros {

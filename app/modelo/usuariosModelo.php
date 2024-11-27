@@ -33,7 +33,7 @@ class UsuariosModelo
 	 */
 	public function comprobarLogin($email, $pass)
 	{
-		$sql = "	SELECT u.nombre, u.id_user, u.rol_id,u.email,u.pass, r.trastero_id
+		$sql = "SELECT u.nombre, u.id_user, u.rol_id,u.email,u.pass, r.trastero_id
 				FROM users u 
 				LEFT JOIN recibos r ON id_user=user_id 
 				WHERE email= :email";

@@ -114,24 +114,10 @@ class RecibosModelo
 	 * @param int $trastero El ID del trastero asociado al recibo.
 	 * @return void
 	 */
-	public function nuevoRecibo($fecha, $pagada, $formaPago, $id_user, $trastero)
+	public function nuevoRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto)
 	{
 
-		$sql = "INSERT INTO recibos (fecha, concepto, pagado, formaPago, user_id, trastero_id) VALUES (:fecha,CASE MONTH(:fecha)
-		WHEN 1 THEN 'Enero'
-        WHEN 2 THEN 'Febrero'
-        WHEN 3 THEN 'Marzo'
-        WHEN 4 THEN 'Abril'
-        WHEN 5 THEN 'Mayo'
-        WHEN 6 THEN 'Junio'
-        WHEN 7 THEN 'Julio'
-        WHEN 8 THEN 'Agosto'
-        WHEN 9 THEN 'Septiembre'
-        WHEN 10 THEN 'Octubre'
-        WHEN 11 THEN 'Noviembre'
-        WHEN 12 THEN 'Diciembre'
-		END
-		, :pagada, :formaPago, :user, :trastero)";
+		$sql = "INSERT INTO recibos (fecha, concepto, pagado, formaPago, user_id, trastero_id) VALUES (:fecha, :concepto, :pagada, :formaPago, :user, :trastero)";
 		$conectar = $this->db->conectar();
 		$consulta = $conectar->prepare($sql);
 		$consulta->bindParam(':fecha', $fecha);
@@ -139,6 +125,21 @@ class RecibosModelo
 		$consulta->bindParam(':formaPago', $formaPago);
 		$consulta->bindParam(':user', $id_user);
 		$consulta->bindParam(':trastero', $trastero);
+		$consulta->bindParam(':concepto', $concepto);
+		$consulta->execute();
+	}//fin crear
+
+
+	public function trasteroAsignado($fecha, $id_user, $trastero, $concepto)
+	{
+
+		$sql = "INSERT INTO recibos (fecha, concepto, user_id, trastero_id) VALUES (:fecha, :concepto, :user, :trastero)";
+		$conectar = $this->db->conectar();
+		$consulta = $conectar->prepare($sql);		
+		$consulta->bindParam(':user', $id_user);
+		$consulta->bindParam(':trastero', $trastero);
+		$consulta->bindParam(':concepto', $concepto);
+		$consulta->bindParam(':fecha', $fecha);		
 		$consulta->execute();
 	}//fin crear
 

@@ -133,6 +133,7 @@
                                        <th scope="col">Precio</th>
                                        <?php  if (isset( $_SESSION['rol']) && $_SESSION['rol'] == 1){
                                            echo "<th scope='col'>Alquilado por:</th>";
+                                           echo "<th scope='col'>Nuevo recibo:</th>";
                                        } else { 
                                            echo "<th scope='col'>Descripción</th>";
                                            echo "<th scope='col'>Disponible</th>";
@@ -150,7 +151,13 @@
                                         }else{
                                             echo "<td>".$trastero['descripcion']."</td>";
                                             echo "<td>".($trastero['disponible']==1 ? 'Si' : 'No')."</td>";
-                                        }; ?>                                
+                                        }; 
+                                        if(isset($trastero['rol_id'])&&($trastero['rol_id'] == 2)){
+                                            echo '<td>
+                                                <a href="../recibos/reciboNuevo.php?id=' . $trastero['id_user'] . '"><img class="ediborra" src="/trasteros1024/public/multimedia/img/recibo.ico" alt="recibo"></a>
+                                            </td>';
+                                        }
+                                        ?>                                
                                     </tr>
                                 <?php } ?>
                                 </tbody>

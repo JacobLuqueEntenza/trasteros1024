@@ -1,6 +1,7 @@
 <?php
 // Incluir el header 
 include '../app/vista/layouts/header.php';
+
 ?>
 <div id="loaderPagina" class="section_loader">
     <div class="loader">

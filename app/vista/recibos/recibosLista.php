@@ -63,13 +63,13 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
                     <label for=""><b>Del Día</b></label>
                     <input type="date" name="from_date" value="<?php if (isset($_GET['from_date'])) {
                         echo $_GET['from_date'];
-                    } ?>" class="form-control mb-4" id="from_date">
+                    }else{echo date('Y-m-d');} ?>" class="form-control mb-4" id="from_date">
                 </div>
                 <div class="col-md-4">
                     <label for=""><b>Hasta el Día</b></label>
                     <input type="date" name="to_date" value="<?php if (isset($_GET['to_date'])) {
                         echo $_GET['to_date'];
-                    } ?>" class="form-control mb-4" id="to_date">
+                    }else{echo date('Y-m-d');}  ?>" class="form-control mb-4" id="to_date">
                 </div>
                 <div class="col-md-4">
                     <label for=""><b></b></label>

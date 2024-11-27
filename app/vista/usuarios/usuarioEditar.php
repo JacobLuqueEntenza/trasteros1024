@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Registro</title>
     <!-- Bootstrap CSS -->
+    <script src="/trasteros1024/public/js/jquery-3.7.1.min.js"></script>    
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="/trasteros1024/public/js/script.js"></script>
 </head>
@@ -57,18 +58,20 @@
             exit();
         };
         //eliminamos el usuario
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            if (isset($_POST['eliminar'])) {
-                $id=$_POST['id'];
-                $controlador->eliminar($id);
-            exit();
-            };
+        
+        if (isset($_POST['eliminar'])) {
+            $id=$_POST['id'];
+            $controlador->eliminar($id);
         };
+        
     }
 
 
-
+    
     ?>
+
+
+
 
     <div class="container col-md-4 ">
         <form action="" method="POST" name="" class="mt-6">
@@ -112,8 +115,7 @@
             <?php }else{}; ?>
             <?php
             if ($_SESSION['rol'] == 1) {
-                echo "<select name='selection' class='form-control'>";
-
+                echo "<select name='selection' class='form-control' id='rolSelect'>";
                 if (isset($usuario['rol_id'])) {
                     echo "<option value='" . $usuario['rol_id'] . "'>";
                     if ($usuario['rol_id'] == 1) {
@@ -129,7 +131,7 @@
                 } else {
                     echo "<option value=''>Selecciona el Rol</option>";
                 }
-
+            
                 echo "<option value='1'>Administrador</option>
                 <option value='2'>Cliente</option>
                 <option value='3'>Usuario</option>
@@ -139,12 +141,13 @@
 
             <div class="form-group text-center mt-4 d-flex justify-content-between">
                 <button type="submit" class="btn btn-success" name="actualizar">Actualizar</button>
-                <button type="submit" class="btn btn-warning" name="eliminar" value="Eliminar">Eliminar</button>
+                <button type="submit" class="btn btn-warning" name="eliminar">Eliminar</button>
                 <button type="button" class="btn btn-danger"
                     onclick="location.href='../../../app/vista/usuarios/usuariosLista.php'">Cancelar</button>
             </div>
         </form>
     </div>
+    <?php include ('../trasteros/modalTrastero.php'); ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

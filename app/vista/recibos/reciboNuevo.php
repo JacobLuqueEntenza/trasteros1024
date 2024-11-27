@@ -63,9 +63,9 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="pagada" name="pagada"
-                            value="<?php if ($formaPago === NULL) {
-                                echo $pagada = 0;
-                            } ?>">
+                            value="<?php $pagada = (!isset($formaPago)||$formaPago) ? 0 : $pagada;
+                            echo $pagada;
+                        ?>">
                     </div>
                     <div class="form-group">
                         <label class="label-grande" for="name">Nombre:</label>

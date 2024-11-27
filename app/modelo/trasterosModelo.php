@@ -56,7 +56,7 @@ class TrasterosModelo
     */
     public function getListaTrasterosAdmin(){
 		
-		$sql="  SELECT DISTINCT t.*,u.nombre,u.apellido_1,u.      apellido_2
+		$sql="  SELECT DISTINCT t.*,u.nombre,u.apellido_1,u.apellido_2,u.rol_id, u.id_user
                 FROM recibos r 
                 INNER JOIN users u on u.id_user=r.user_id
                 INNER JOIN trasteros t on t.id_trastero=r.trastero_id

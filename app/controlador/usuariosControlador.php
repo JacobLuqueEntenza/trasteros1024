@@ -20,13 +20,13 @@ class UsuariosControlador
     {
 
         // Validación de entradas
-        if (empty($email) || empty($pass)) {
+        /*if (empty($email) || empty($pass)) {
             throw new Exception('El correo electrónico y la contraseña son obligatorios.');
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new Exception('El correo electrónico no es válido.');
-        }
+        }*/
 
         // Manejo de errores durante la inclusión de archivos necesarios
         try {

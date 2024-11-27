@@ -42,11 +42,9 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
 ;
 ?>
 
-
-<div class="containertext-center mb-5 ">
-    <h1 class="h1 text-center mb-5">Solo visible para administradores</h1>
-    <p class="h4 m-4">Desde aquí el administrador puede gestionar todo lo referente a los usuarios, es decir, actualizar
-        datos personales, roles y eliminar usuarios. La contraseña solo la podrá modificar el usuario.</p>
+<img id="fotoUsuarios" src="/trasteros1024/public/multimedia/img/usuarios.jpg" alt="usuarios">
+<div class="containertext-center mb-5 col-md-12">
+    <p class="h4 mt-4 text-justify">Como administrador, esta sección te permite gestionar de manera integral todos los aspectos relacionados con los usuarios registrados en la plataforma. Podrás actualizar información personal como nombres, correos electrónicos o cualquier otro dato relevante para mantener la base de datos al día. Además, tendrás la capacidad de asignar, modificar o revocar roles según las necesidades del sistema o los permisos requeridos por cada usuario. Si un usuario ya no debe formar parte del sistema, también podrás eliminarlo de forma permanente. Este panel te proporciona un control centralizado y eficiente para mantener una administración ordenada y funcional.</p>
 </div>
 <div class="card">
     <div class="col-md-12">
@@ -72,8 +70,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
             <div class="p-0">
                 <table class="table text-center tablaUsuarios" id="tablaUsuarios">
                     <thead>
-                        <tr>
-                            <th scope="col">ID</th>
+                        <tr>                            
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellidos</th>
                             <th scope="col">Dirección</th>
@@ -86,7 +83,6 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
                     <tbody>
                         <?php foreach ($todosUsuarios as $usuario) { ?>
                             <tr>
-                                <td scope="col"><?php echo $usuario['id_user'] ?></td>
                                 <td><?php echo $usuario['nombre'] ?></td>
                                 <td><?php echo $usuario['apellido_1'] . ' ' . $usuario['apellido_2'] ?></td>
                                 <td><?php echo $usuario['direccion'] ?></td>
