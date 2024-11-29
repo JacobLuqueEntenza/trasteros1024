@@ -77,7 +77,7 @@
 
             <div class="form-group text-center mt-4 d-flex justify-content-between">
                 <button type="submit" class="btn btn-success">Registrarse</button>
-                <button type="button" class="btn btn-danger"
+                <button type="button" class="btn btn-secondary"
                     onclick="location.href='../../../app/vista/usuarios/usuariosLista.php'">Cancelar</button>
             </div>
         </form>

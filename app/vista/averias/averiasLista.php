@@ -5,7 +5,7 @@ require_once('../../controlador/averiasControlador.php');
 $averias = new AveriasControlador();
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] > 2) {
-    header('Location: /tutrastero/tutrastero/public/index.php');
+    header('Location: /trasteros1024/public/index.php');
     exit;
 }
 ;
@@ -20,7 +20,7 @@ $todasAverias = $averias->listaAverias($pagina);
 $totalPaginas = $averias->numeroPaginas($filasPorPagina);
 
 ?>
-<img id="papeles" src="../../../public/multimedia/img/averias.jpg" alt="averias">
+<img id="papeles" src="/trasteros1024/public/multimedia/img/averias.jpg" alt="averias">
 <div class="containertext-center mb-5 ">
     <h1 class="h1 text-center mb-5">Solo visible para administradores</h1>
     <p class="h4 m-4">Desde aquí el administrador puede gestionar todo lo referente a las averias, es decir, situacion

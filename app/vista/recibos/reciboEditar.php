@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/trasteros1024/public/js/script.js"></script>
-</head>
-
-<body class="d-flex justify-content-center align-items-center vh-100">
 
     <?php
     session_start();
+    include('../layouts/headerFormularios.php');
+    include('modalConfirmacionBorrado.php');
     require_once('../../controlador/recibosControlador.php');
     $controladorRecibo = new RecibosControlador();
 
@@ -30,8 +19,7 @@
     } else {
         echo ("No tengo id del recibo");
     }
-    //var_dump($recibo);
-    //$controladorRecibo->actualizar(81,"2024/12/11", "zxczxczcz",true, "bixum", 179, 14);
+    
     
     // Actualización del recibo
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -48,14 +36,7 @@
             $controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago);
             //echo ($controladorRecibo->actualizar($id_recibo, $fecha, $concepto, $pagada, $formaPago, $id_user, $trastero));
             exit();
-        } else if (isset($_POST['eliminar'])) {
-            $id = $_POST['id'];
-            $controladorRecibo->eliminar($id);
-            exit();
-        } else {
-            echo "<script>alert('No paso de ti');</script>";
-            exit();
-        }
+        } 
     }
     ?>
 
@@ -115,11 +96,13 @@
                             </select>
                         </div>
 
-
-                        <button type="submit" class="btn btn-success mt-3" value="actualizar"
-                            name="editarRecibo">Modificar Recibo</button>
-                        <button type="submit" class="btn btn-danger mt-3" value="eliminar" name="eliminar">Eliminar
-                            Recibo</button>
+                        <div class="form-group text-center mt-4 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success mt-3" value="actualizar"
+                                name="editarRecibo">Modificar Recibo</button>
+                                <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#confirmDeleteModal">Eliminar</button>
+                        </div>
+                        <button type="button" class="btn btn-secondary mt-5 w-100"
+                        onclick="location.href='../../../app/vista/recibos/recibosLista.php'">Cancelar</button>
                     </form>
                 </div>
             </div>

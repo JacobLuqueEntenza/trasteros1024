@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <!-- Bootstrap CSS -->
-    <script src="/trasteros1024/public/js/jquery-3.7.1.min.js"></script>    
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/trasteros1024/public/js/script.js"></script>
-</head>
-
-<body class="d-flex justify-content-center align-items-center vh-100">
 
     <?php
-
     session_start();
-
-
+    include('../layouts/headerFormularios.php');
+    include('modalConfirmacionBorrado.php');
     require_once('../../controlador/usuariosControlador.php');
     $controlador = new UsuariosControlador();
 
@@ -57,12 +42,7 @@
             $controlador->actualizar($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
             exit();
         };
-        //eliminamos el usuario
         
-        if (isset($_POST['eliminar'])) {
-            $id=$_POST['id'];
-            $controlador->eliminar($id);
-        };
         
     }
 
@@ -141,10 +121,9 @@
 
             <div class="form-group text-center mt-4 d-flex justify-content-between">
                 <button type="submit" class="btn btn-success" name="actualizar">Actualizar</button>
-                <button type="submit" class="btn btn-warning" name="eliminar">Eliminar</button>
-                <button type="button" class="btn btn-danger"
-                    onclick="location.href='../../../app/vista/usuarios/usuariosLista.php'">Cancelar</button>
-            </div>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">Eliminar</button>
+            </div>   
+            <button type="button" class="btn btn-secondary mt-5 w-100" onclick="location.href='../../../app/vista/usuarios/usuariosLista.php'">Cancelar</button>
         </form>
     </div>
     <?php include ('../trasteros/modalTrastero.php'); ?>

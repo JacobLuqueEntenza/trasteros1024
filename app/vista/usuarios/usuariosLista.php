@@ -4,8 +4,6 @@
 require_once('../../controlador/usuariosControlador.php');
 $usuarios = new UsuariosControlador();
 
-$pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
-
 $rolCapturado = isset($_GET['rolCapturado']) ? $_GET['rolCapturado'] : 0;
 // Capturar el valor seleccionado para el rol
 if (isset($_GET['tipoUsers'])) {
@@ -22,6 +20,7 @@ if (isset($_GET['tipoUsers'])) {
     $rol = "1"; // Si no hay rol seleccionado, mostrar todos los roles
 }
 
+$pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
 $previo = ($pagina - 1);
 $siguiente = ($pagina + 1);
@@ -42,7 +41,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
 ;
 ?>
 
-<img id="fotoUsuarios" src="/trasteros1024/public/multimedia/img/usuarios.jpg" alt="usuarios">
+<img id="fotoUsuarios" src="/trasteros1024/public/multimedia/img/user.jpg" alt="usuarios">
 <div class="containertext-center mb-5 col-md-12">
     <p class="h4 mt-4 text-justify">Como administrador, esta sección te permite gestionar de manera integral todos los aspectos relacionados con los usuarios registrados en la plataforma. Podrás actualizar información personal como nombres, correos electrónicos o cualquier otro dato relevante para mantener la base de datos al día. Además, tendrás la capacidad de asignar, modificar o revocar roles según las necesidades del sistema o los permisos requeridos por cada usuario. Si un usuario ya no debe formar parte del sistema, también podrás eliminarlo de forma permanente. Este panel te proporciona un control centralizado y eficiente para mantener una administración ordenada y funcional.</p>
 </div>

@@ -1,6 +1,19 @@
-<?php require('../layouts/header.php'); ?>
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/trasteros1024/public/js/script.js"></script>
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100">
 <?php
+
+session_start();
+
 require_once('../../controlador/recibosControlador.php');
 $controladorRecibo = new RecibosControlador();
 
@@ -50,7 +63,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
         <div class="col-md-6">
             <div class="form-container">
                 <form action="" method="POST" class="mt-5" name="nuevoRecibo">
-                    <legend class="text-center mb-5">Nuevo Recibo viene de la lista de usuarios</legend>
+                    <legend class="text-center mb-5 h1"><strong>Recibo Nuevo </strong></legend>
                     <div class="form-group">
                         <input type="text" class="form-control" id="id" name="id" value="<?php echo $id ?>">
                     </div>
@@ -97,8 +110,12 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
                             <label class="form-check-label" for="inlineRadio3">Efectivo</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-success mt-3" value="agregarRecibo" name="agregarRecibo">Añadir
+                    <div class="form-group text-center mt-4 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success" value="agregarRecibo" name="agregarRecibo">Añadir
                         Recibo</button>
+                        <button type="button" class="btn btn-secondary"
+                        onclick="location.href='../../../app/vista/recibos/recibosLista.php'">Cancelar</button>
+                    </div>   
                 </form>
             </div>
         </div>

@@ -21,6 +21,9 @@
 a {
   text-decoration: none;
 }
+h1>a:hover {
+  text-decoration: none;
+}
 ol,
 ul {
   list-style: none;
@@ -225,7 +228,7 @@ header {
 
 #fotoUsuarios{
   width: 100%;
-  height: 90vh;
+  height: 75vh;
 }
 /*-----------------------FIN USUARIOS------------------------------*/
 
@@ -717,7 +720,7 @@ footer {
 
   #averiaFoto {
     width: 100%;
-    height: 90vh;
+    height: 75vh;
   }
   /*---------------------- FIN AVERIAS--------------------------*/
   /*----------------------------------------------------------*/
@@ -727,7 +730,7 @@ footer {
 /*----------------------------------------------------------*/
 #papeles {
   width: 100%;
-  height: 90vh;
+  height: 75vh;
 }
 .contenedorRecibos {
   margin-top: 2rem;

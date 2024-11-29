@@ -37,7 +37,7 @@ class AveriasControlador
             // Obtener el total de usuarios y calcular la paginación
             $totalAverias = $averia->filasLista();
             $totalPaginas = self::numeroPaginas($filasPorPagina);
-            $filasxPagina = isset($filasxPagina) ? ceil($totalAverias / $totalPaginas) : 1;
+            $filasxPagina = ceil($totalAverias / $totalPaginas);
             $paginaInicio = (($pagina - 1) * $filasxPagina);
 
             // Obtener la lista de usuarios para la página solicitada

@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
+<?php
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/trasteros1024/public/js/script.js"></script>
-</head>
+include('../layouts/headerFormularios.php');
 
-<body class="d-flex justify-content-center align-items-center vh-100">
-
-    <?php
-
-    session_start();
-
-
-
-
+session_start();
+    include('modalConfirmacionBorrado.php');
     require_once('../../controlador/AveriasControlador.php');
     $controladorAveria = new AveriasControlador();
     //si no eres administrador al index
     if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
         header('Location: ../index.php');
         exit;
-    }
-    ;
+    };
     //nos traemos al formulario de editar los datos
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -48,21 +32,10 @@
 
             $controladorAveria->actualizar($id_averia, $fecha, $descripcion, $estado, $trastero);
             exit();
-        }
-        ;
-    }
-    ;
+        };
+    };
 
-    //si tenemos el post de eliminar, eliminamos de la tabla
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        if (isset($_POST['eliminar'])) {
-            $id = $_POST['id'];
-            $controladorAveria->eliminar($id);
-            exit();
-        }
-        ;
-    }
-    ;
+    
 
 
     ?>
@@ -100,11 +73,13 @@
                                 <option value="Reparado" <?php echo ($recibo['estado'] == "Reparado") ? 'selected' : ''; ?>>Reparado</option>
                             </select>
                         </div>
-
-                        <button type="submit" class="btn btn-success mt-3" value="actualizar"
-                            name="actualizar">Modificar Recibo</button>
-                        <button type="submit" class="btn btn-danger mt-3" value="eliminar" name="eliminar">Eliminar
-                            Recibo</button>
+                        <div class="form-group text-center mt-4 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success mt-3" value="actualizar"
+                                name="actualizar">Modificar Recibo</button>
+                            <button type="button" class="btn btn-danger mt-3" data-toggle="modal" data-target="#confirmDeleteModal">Eliminar</button>
+                        </div>
+                        <button type="button" class="btn btn-secondary mt-5 w-100"
+                        onclick="location.href='../../../app/vista/averias/averiasLista.php'">Cancelar</button>
                     </form>
                 </div>
             </div>

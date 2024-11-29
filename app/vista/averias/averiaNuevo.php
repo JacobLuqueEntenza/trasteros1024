@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/trasteros1024/public/js/script.js"></script>
-</head>
 
-<body class="d-flex justify-content-center align-items-center vh-100">
-
-    <?php
+ <?php
     session_start();
+    include('../layouts/headerFormularios.php');
     ?>
+
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="form-container">
                     <form action="../../controlador/correoAveria.php" method="POST" class="mt-5" name="nuevo">
-                        <legend class="text-center mb-5">Nueva Averia</legend>
+                        <legend class="text-center mb-5 h1">Nueva Averia</legend>
                         <div class="form-group">
                             <label class="label-grande" for="fecha">Fecha:</label>
                             <input type="date" class="form-control" id="fecha" name="fecha"
@@ -44,8 +35,11 @@
                                     value="<?php echo $_SESSION['trastero']; ?>" readonly>
                             <?php endif; ?>
                         </div>
-
-                        <button type="submit" class="btn btn-success mt-3" name="btnAveria">Guardar</button>
+                        <div class="form-group text-center mt-4 d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success mt-3" name="btnAveria">Guardar</button>
+                            <button type="button" class="btn btn-secondary mt-3"
+                    onclick="location.href='../../../app/vista/averias/averiasLista.php'">Cancelar</button>
+                        </div>
                     </form>
                 </div>
             </div>

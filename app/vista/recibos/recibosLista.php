@@ -1,6 +1,6 @@
-<?php require('../layouts/header.php'); ?>
 
 <?php
+require('../layouts/header.php');
 require_once('../../controlador/recibosControlador.php');
 $recibos = new RecibosControlador();
 
