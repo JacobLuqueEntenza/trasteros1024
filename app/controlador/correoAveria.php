@@ -30,17 +30,24 @@ if (isset($_POST['btnAveria'])) {
   //validaciones
   if (empty($descripcion)) {
     $errores[] = "El campo Descripcion es obligatorio";
-  }
-  ;
-  //capturamos los datos del usuario
-  $clienteTrastero = $averias->correoTrastero($id);
-  $datosCliente = $clienteTrastero[0];
+  };
 
-  //damos valores a las variables del correo
-  $nombre = $datosCliente['nombre'];
-  $email = $datosCliente['email'];
-  $mensaje = $descripcion;
-  $asunto = 'Nesesito reparación';
+  // Capturamos los datos del usuario
+$clienteTrastero = $averias->correoTrastero($id);
+
+if (!empty($clienteTrastero) && isset($clienteTrastero[0]['nombre'], $clienteTrastero[0]['email'])) {
+    $datosCliente = $clienteTrastero[0];
+
+    // Damos valores a las variables del correo
+    $nombre = $datosCliente['nombre'];
+    $email = $datosCliente['email'];
+    $mensaje = $descripcion;
+    $asunto = 'Necesito reparación';
+} else {
+    $errores[] = "No se pudo obtener la información del cliente o está incompleta.";
+};
+
+  
 
   if (count($errores) == 0) {
     $cuerpo = "Mensaje enviado por: $nombre<br>";
