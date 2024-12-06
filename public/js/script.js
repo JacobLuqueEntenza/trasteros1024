@@ -121,36 +121,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const numeroTrasteroOculto = document.getElementById('numeroTrasteroOculto');
     const modalUserId = document.getElementById('idCliente'); // Campo oculto en el modal
     const formUserId = document.getElementById('id'); // Campo del formulario
-
+    
     // Mostrar el modal al seleccionar "Cliente"
     rolSelect.addEventListener('change', function () {
-        if (this.value == 2) { // Valor de "Cliente"
-            modalAsignarTrastero.show();
-        }
-    });
-
-     // Mostrar el modal al seleccionar "Cliente"
-     rolSelect.addEventListener('change', function () {
         if (this.value == 2) { // Valor de "Cliente"
             modalUserId.value = formUserId.value; // Pasar el ID del formulario al modal
             modalAsignarTrastero.show();
         }
     });
 
+     
+
     // Transferir el valor del modal al campo oculto al presionar "Guardar"
     document.getElementById('guardarTrastero').addEventListener('click', () => {
         const numeroTrastero = numeroTrasteroModal.value;
         if (numeroTrastero) {
             numeroTrasteroOculto.value = numeroTrastero;
-            alert('Número de trastero asignado correctamente.');
+            alert('Número de trastero asignado correctamente.');           
             modalAsignarTrastero.hide();
         } else {
             alert('Por favor, ingrese un número de trastero.');
-        }
+        };
+       
+           
+        
+        
     });
+     rolSelect.value = "2"; // Valor asociado al rol de "Cliente"
 });
-
-
 /**
  * cuando carge la pagina nos aparezca el loader
  * 

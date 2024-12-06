@@ -1,6 +1,4 @@
 <?php
-
-
 class UsuariosControlador
 {
 
@@ -241,13 +239,10 @@ class UsuariosControlador
         try {
             require_once('../../modelo/usuariosModelo.php');
             $usuario = new UsuariosModelo();
-            // Hash de la nueva contraseña si se proporciona
-            if (!empty($pass)) {
-                $pass = password_hash($pass, PASSWORD_DEFAULT);
-            }
+           
             $usuario->editarUsuario($id, $nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol);
-
             header('Location:usuariosLista.php');
+            ob_end_flush();
             exit();
         } catch (Exception $e) {
             echo 'Ocurrió un error: ' . $e->getMessage();

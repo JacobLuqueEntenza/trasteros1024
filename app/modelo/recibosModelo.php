@@ -132,7 +132,6 @@ class RecibosModelo
 
 	public function trasteroAsignado($fecha, $id_user, $trastero, $concepto)
 	{
-
 		$sql = "INSERT INTO recibos (fecha, concepto, user_id, trastero_id) VALUES (:fecha, :concepto, :user, :trastero)";
 		$conectar = $this->db->conectar();
 		$consulta = $conectar->prepare($sql);		

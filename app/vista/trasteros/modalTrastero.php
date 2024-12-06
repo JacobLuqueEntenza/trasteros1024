@@ -2,7 +2,6 @@
 require_once('../../controlador/recibosControlador.php');
 $controladorRecibo = new RecibosControlador();
 
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST['asignarTrastero'])) {
 
@@ -12,16 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $fecha = $_POST['fecha'];
         
         $controladorRecibo->asignarTrastero($fecha, $id_user, $trastero,$concepto);
-        exit();
-    }
-    ;
-}
-;
-
+    };
+};
 ?>
-
-
-<!--   modal para asignar trastero    -->
 <div class="modal fade" id="modalAsignarTrastero" tabindex="-1" aria-labelledby="modalAsignarTrasteroLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div  class="modal-content">
@@ -47,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </div>
                     <div class="form-group">
                         <label for="altaCliente">Fecha</label>
-                        <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo date('Y-m-d')?>">
+                        <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo date('Y-m-d')?>">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -60,8 +52,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </div>
 </div>
-
-
-<!-- fin  modal para asignar trastero    -->
 
 
