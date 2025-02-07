@@ -29,9 +29,9 @@ if (isset($_POST['btnAveria'])) {
 
   //validaciones
   if (empty($descripcion)) {
-    $errores[] = "El campo Descripcion es obligatorio";
+    $errores[] = "Error: El campo Descripcion es obligatorio";
   };
-
+  
   // Capturamos los datos del usuario
 $clienteTrastero = $averias->correoTrastero($id);
 
@@ -49,7 +49,7 @@ if (!empty($clienteTrastero) && isset($clienteTrastero[0]['nombre'], $clienteTra
 
   
 
-  if (count($errores) == 0) {
+  if (count($errores) === 0) {
     $cuerpo = "Mensaje enviado por: $nombre<br>";
     $cuerpo .= "Email para contactar: $email<br>";
     $cuerpo .= "Asunto: $asunto<br><br>";
@@ -110,7 +110,7 @@ if (!empty($clienteTrastero) && isset($clienteTrastero[0]['nombre'], $clienteTra
       }
 
       echo '<script type="text/javascript">alert("Mensaje enviado correctamente");</script>';
-      echo '<script type="text/javascript">function Redirect(){window.location="../../public";}setTimeout("Redirect()", 100);</script>';
+      echo '<script type="text/javascript">function Redirect(){window.location="../../public";}setTimeout("Redirect()", 50);</script>';
 
 
 
@@ -119,8 +119,7 @@ if (!empty($clienteTrastero) && isset($clienteTrastero[0]['nombre'], $clienteTra
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
   } else {
-    echo '<script type="text/javascript">alert("Campo descripcion vacío, por favor rellenalo, gracias.");</script>';
-    echo '<script type="text/javascript">function Redirect(){window.location="../vista/averias/averiaNuevo.php";}setTimeout("Redirect()", 100);</script>';
+        echo '<script type="text/javascript">function Redirect(){window.location="../vista/averias/averiaNuevo.php";}setTimeout("Redirect()", 50);</script>';
 
   }
   $averias->guardarAveria($fecha, $descripcion, $estado, $trastero);

@@ -1,8 +1,6 @@
 <?php
 class UsuariosControlador
 {
-
-
     /**
      * Inicia sesión de usuario. *
      * Esta función realiza el proceso de inicio de sesión de un usuario utilizando las credenciales proporcionadas.
@@ -13,10 +11,8 @@ class UsuariosControlador
      * @return void
      * @throws Exception Si hay algún error en el proceso de login.
      */
-
     public function login($email, $pass)
     {
-
         // Validación de entradas
         /*if (empty($email) || empty($pass)) {
             throw new Exception('El correo electrónico y la contraseña son obligatorios.');
@@ -137,7 +133,8 @@ class UsuariosControlador
             // Obtener el total de usuarios y calcular la paginación
             $totalUsuarios = $usuario->filasLista($rol);
             $totalPaginas = self::numeroPaginas($filasPorPagina, $rol);
-            $filasxPagina = ceil($totalUsuarios / $totalPaginas);
+            //nos aseguramos que no va a dividir por cero
+            $filasxPagina = ($totalPaginas > 0) ? $filasPorPagina : $totalUsuarios;
             $paginaInicio = (($pagina - 1) * $filasxPagina);
 
             // Obtener la lista de usuarios para la página solicitada
@@ -181,7 +178,8 @@ class UsuariosControlador
         try {
             // Obtener el total de usuarios y calcular el número de páginas
             $totalUsuarios = $usuario->filasLista($rol);
-            $totalPaginas = ceil($totalUsuarios / $filasPorPagina);
+            //nos aseguramos que no va a dividir por cero
+            $totalPaginas = ($filasPorPagina > 0) ? max(1, ceil($totalUsuarios / $filasPorPagina)) : 1;
 
             return $totalPaginas;
 

@@ -4,9 +4,10 @@ session_start();
 include('../layouts/headerFormularios.php');
 include('modalConfirmacionBorrado.php');
 require_once('../../controlador/usuariosControlador.php');
+require_once('../../controlador/usuariosControlador.php');
 include('../trasteros/modalTrastero.php');
 $controlador = new UsuariosControlador();
-
+$trastero=new RecibosControlador();
 
 
 if (isset($_GET['id'])) {
@@ -27,6 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $pass = $_POST['pass'];
         $confirmPass = $_POST['comfirma_pass'] ?? null;
 
+        if($_POST['selection']==3){
+            $trastero->liberarTrastero($id);            
+        }
         // Si no está vacío el campo de selección, asignarlo; si no, rol 3 por defecto
         $rol = isset($_POST['selection']) ? $_POST['selection'] : 3;
 
@@ -131,22 +135,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <button type="button" class="btn btn-secondary mt-5 w-100" onclick="location.href='usuariosLista.php'">Cancelar</button>
     </form>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Seleccionamos el botón "Guardar" del modal
-        const guardarTrasteroButton = document.getElementById("guardarTrastero");
-
-        // Escuchamos el evento 'click' en el botón
-        guardarTrasteroButton.addEventListener("click", function (event) {
-            // Evitamos que el formulario recargue la página (para propósitos de demostración)
-            // event.preventDefault(); // Descomenta si no deseas enviar el formulario en este momento
-
-            // Asignamos el valor "Cliente" (2) al select del formulario
-            const rolSelect = document.getElementById("rolSelect");
-            if (rolSelect) {
-                rolSelect.value = "2"; // Valor asociado al rol de "Cliente"
-            }
-        });
-    });
-</script>
-

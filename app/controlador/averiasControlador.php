@@ -20,8 +20,8 @@ class AveriasControlador
     public function listaAverias($pagina)
     {
         //filas que queremos mostrar por pagina
-        $filasPorPagina = 10;
-
+        $filasPorPagina= 10;
+        
         // Manejo de errores durante la inclusión de archivos necesarios
         try {
             require_once "../../../config/conexion.php";
@@ -37,7 +37,7 @@ class AveriasControlador
             // Obtener el total de usuarios y calcular la paginación
             $totalAverias = $averia->filasLista();
             $totalPaginas = self::numeroPaginas($filasPorPagina);
-            $filasxPagina = ceil($totalAverias / $totalPaginas);
+            $filasxPagina = ($totalPaginas > 0) ? $filasPorPagina : $totalAverias; // Evita división por 0
             $paginaInicio = (($pagina - 1) * $filasxPagina);
 
             // Obtener la lista de usuarios para la página solicitada
@@ -81,7 +81,8 @@ class AveriasControlador
         try {
             // Obtener el total de usuarios y calcular el número de páginas
             $totalAverias = $averia->filasLista();
-            $totalPaginas = ceil($totalAverias / $filasPorPagina);
+            $totalPaginas = ($filasPorPagina > 0) ? ceil($totalAverias / $filasPorPagina) : 1;
+
 
             return $totalPaginas;
 

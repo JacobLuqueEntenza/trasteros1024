@@ -42,10 +42,8 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
 ?>
 
 <img id="papeles" src="../../../public/multimedia/img/papeles.jpg" alt="papeles">
-<div class="col-md-12">
-    <div class="container mt-1 ">
-        <div class="containertext-center mb-5 ">
-            <p class="h4 mt-4 text-justify">Te damos la bienvenida a nuestro servicio, diseñado para proporcionarte
+<div class="containertext-center mb-5 col-md-12">
+<p class="h4 mt-4 text-justify">Te damos la bienvenida a nuestro servicio, diseñado para proporcionarte
                 acceso exclusivo a un historial detallado de todos los recibos emitidos a tu nombre hasta la fecha.
                 Desde las facturas más antiguas hasta las más recientes, nuestra plataforma te ofrece la comodidad de
                 revisar y descargar tus recibos en cualquier momento y lugar. Con esta herramienta, podrás mantener un
@@ -53,10 +51,8 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
                 eficiente y sin complicaciones. Descubre la conveniencia y la tranquilidad que brinda tener todo tu
                 historial de recibos al alcance de tus manos. ¡Explora ahora y simplifica la gestión de tus finanzas!"
             </p>
-        </div>
-
-
-
+<div class="col-md-12">
+    <div class="container mt-1 ">
         <form action="" method="get" name="fechas">
             <div class="row align-items-center text-center justify-content-center">
                 <div class="col-md-4">
@@ -80,7 +76,7 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
             </div>
         </form>
 
-        <div class="card">
+        <div class="card" id="tablaRecibos">
             <div class="card-header h1 text-center">
                 Lista de Recibos
             </div>
@@ -88,14 +84,14 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
                 <table class="table text-center">
                     <thead>
                         <tr>
-                            <th scope="col" class="col-2">Número Recibo</th>
+                            <th scope="col" class="col-2">Recibo nº</th>
                             <?php echo (isset($_SESSION['usuario']) && isset($_SESSION['rol']) && $_SESSION['rol'] == 1) ? '
-                                        <th scope="col" class="col-2">Número Trastero</th>
+                                        <th scope="col" class="col-2">Trastero</th>
                                         <th scope="col" class="col-2">Nombre</th>' : ''; ?>
-                            <th scope="col" class="col-2">Concepto</th>
+                            <th scope="col" class="col-2">Fecha</th>
                             <th scope="col" class="col-2">Pagado</th>
                             <th scope="col" class="col-2">Forma de Pago</th>
-
+                            <th scope="col" class="col-2">Concepto</th>
                             <?php echo (isset($_SESSION['usuario']) && isset($_SESSION['rol']) && $_SESSION['rol'] == 1) ? '
                                         <th scope="col" class="" colspan="3">Opciones</th>
                                         ' : ''; ?>
@@ -110,9 +106,10 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
                                         <td>' . $recibo['nombre'] . ' ' . $recibo['apellido_1'] . ' ' . $recibo['apellido_2'] . '</td>' : ''; ?>
 
 
-                                <td><?php echo $recibo['concepto'] ?></td>
+                                <td><?php echo $recibo['fecha'] ?></td>
                                 <td><?php echo ($recibo['pagado'] == 1 ? 'Si' : 'No') ?></td>
                                 <td><?php echo $recibo['formaPago'] ?></td>
+                                <td><?php echo $recibo['concepto'] ?></td>
 
                                 <?php
                                 echo (isset($_SESSION['usuario']) && isset($_SESSION['rol']) && $_SESSION['rol'] == 1) ?

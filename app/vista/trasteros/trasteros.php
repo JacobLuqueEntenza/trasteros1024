@@ -155,7 +155,7 @@
                                         if(isset($trastero['rol_id'])&&($trastero['rol_id'] == 2)){
                                             echo '<td>
                                                 <a href="../recibos/reciboNuevo.php?id=' . $trastero['id_user'] . '"><img class="ediborra" src="/trasteros1024/public/multimedia/img/recibo.ico" alt="recibo"></a>
-                                            </td>';
+                                                </td>';
                                         }
                                         ?>                                
                                     </tr>

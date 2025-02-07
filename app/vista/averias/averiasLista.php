@@ -22,9 +22,8 @@ $totalPaginas = $averias->numeroPaginas($filasPorPagina);
 ?>
 <img id="papeles" src="/trasteros1024/public/multimedia/img/averias.jpg" alt="averias">
 <div class="containertext-center mb-5 ">
-    <h1 class="h1 text-center mb-5">Solo visible para administradores</h1>
-    <p class="h4 m-4">Desde aquí el administrador puede gestionar todo lo referente a las averias, es decir, situacion
-        en que estado estan. ESTUDIAR ADJUNTAR FOTO.</p>
+    <p class="h4 m-4">Mantén tu trastero en perfecto estado con nuestro sistema de gestión de averías e incidencias. Si en algún momento detectas un problema, como daños en la estructura, fallos en la cerradura, humedad o cualquier otra incidencia, puedes reportarlo fácilmente a través de nuestra plataforma. Nuestro administrador revisará tu solicitud y trabajará para ofrecerte una solución de manera rápida y eficiente, garantizando así la seguridad y buen estado de tu espacio de almacenamiento. Tu tranquilidad es nuestra prioridad.
+    </p>
 </div>
 <div class="col-md-12">
     <div class="container mt-5 ">
@@ -60,7 +59,7 @@ $totalPaginas = $averias->numeroPaginas($filasPorPagina);
                                                 src="/trasteros1024/public/multimedia/img/editar.ico" alt="Editar"></a>
                                     </td>
                                     <td>
-                                        <a href="averiaBorrar.php?id=<?php echo $averia['id_averia']; ?>"><img class="ediborra"
+                                        <a href="averiaEditar.php?id=<?php echo $averia['id_averia']; ?>"><img class="ediborra"
                                                 src="/trasteros1024/public/multimedia/img/borrar.ico" alt="Eliminar"></a>
                                     </td>
                                 <?php endif; ?>

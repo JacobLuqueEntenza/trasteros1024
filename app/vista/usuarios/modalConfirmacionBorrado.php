@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este usuario?<br>
+                    ¿Estás seguro de que deseas eliminar este usuario?jjjj<br>
                     <div class="h3"><?php echo $usuario['nombre'];?></div>
                     Esta acción no se puede deshacer.
                 </div>

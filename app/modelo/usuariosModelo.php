@@ -1,7 +1,6 @@
 <?php
 class UsuariosModelo
 {
-
 	private $db;
 
 	/**
@@ -309,7 +308,7 @@ class UsuariosModelo
 			$userId = $conectar->lastInsertId();
 
 			// Preparar y ejecutar la inserción en la tabla recibos
-			$concepto = "Alquiler de trastero"; // Ajusta el concepto según sea necesario
+			$concepto = "Alquiler de trastero"; 
 			$consulta2 = $conectar->prepare($sql2);
 			$consulta2->bindParam(':user_id', $userId);
 			$consulta2->bindParam(':trastero', $trastero);

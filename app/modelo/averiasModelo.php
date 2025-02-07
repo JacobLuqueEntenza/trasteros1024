@@ -97,6 +97,11 @@ class AveriasModelo
 	public function agregarAveria($fecha, $descripcion, $estado, $trastero)
 	{
 
+		// Validar que los campos obligatorios no estén vacíos
+		if (empty(trim($descripcion))) {
+			echo "<script>alert('Debe añadir algo en la descripción.');</script>";
+			return false;
+		};
 		// SQL para insertar el nuevo usuario
 		$sql = "INSERT INTO averias (fecha, descripcion, estado, trastero_id) VALUES (:fecha, :descripcion, :estado, :trastero)";
 
@@ -109,7 +114,6 @@ class AveriasModelo
 			$consulta->bindParam(':descripcion', $descripcion);
 			$consulta->bindParam(':estado', $estado);
 			$consulta->bindParam(':trastero', $trastero);
-
 			// Ejecutar la consulta
 			$consulta->execute();
 		} catch (PDOException $e) {
@@ -216,7 +220,13 @@ class AveriasModelo
 	 */
 	public function getCorreoTrasteros($id)
 	{
-
+		try {
+			// Verificar si el ID está vacío
+			if (empty(trim($id))) {
+				echo "<script>alert('Error: Debes introducir el número de trastero.');</script>";
+				return false;
+			};
+			
 		$sql = "  SELECT DISTINCT t.*,u.nombre,u.apellido_1,u.apellido_2,u.email
 		FROM recibos r 
 		INNER JOIN users u on u.id_user=r.user_id
@@ -225,18 +235,17 @@ class AveriasModelo
 		$conectar = $this->db->conectar();
 		$consulta = $conectar->prepare($sql);
 		$consulta->execute();
+		
 		$trastero = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
 		return $trastero;
+		} catch (PDOException $e) {
+			// Manejo de errores
+			echo "<script>alert('Error al obtener los datos: " . $e->getMessage() . "');</script>";
+			error_log("Error en getCorreoTrasteros: " . $e->getMessage());
+			return false;
+		}
+		
+
 	}//fin correo de trasteros
-
-
-
-
-
-
-
-
-
-
 }

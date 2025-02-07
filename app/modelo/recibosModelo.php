@@ -127,20 +127,55 @@ class RecibosModelo
 		$consulta->bindParam(':trastero', $trastero);
 		$consulta->bindParam(':concepto', $concepto);
 		$consulta->execute();
+		
 	}//fin crear
 
 
 	public function trasteroAsignado($fecha, $id_user, $trastero, $concepto)
 	{
 		$sql = "INSERT INTO recibos (fecha, concepto, user_id, trastero_id) VALUES (:fecha, :concepto, :user, :trastero)";
+		$sql2= "UPDATE trasteros SET disponible=0 WHERE id_trastero=:trastero";
 		$conectar = $this->db->conectar();
-		$consulta = $conectar->prepare($sql);		
+		$consulta = $conectar->prepare($sql);				
 		$consulta->bindParam(':user', $id_user);
 		$consulta->bindParam(':trastero', $trastero);
 		$consulta->bindParam(':concepto', $concepto);
-		$consulta->bindParam(':fecha', $fecha);		
+		$consulta->bindParam(':fecha', $fecha);	
 		$consulta->execute();
-	}//fin crear
+		
+		$consulta2 = $conectar->prepare($sql2);
+		$consulta2->bindParam(':trastero', $trastero);
+		$consulta2->execute();
+	}//fin trasteroAsignado
+
+	public function cambioRol($id_user)
+	{
+		$sql = "UPDATE users SET rol_id= 2 WHERE id_user= :user";
+		$conectar = $this->db->conectar();
+		$consulta = $conectar->prepare($sql);		
+		$consulta->bindParam(':user', $id_user);
+		if($consulta->execute()){
+			echo "<script>
+                alert('El usuario ha alquilado un trastero y pasa a ser Cliente.');
+                window.location.href='../trasteros/trasteros.php#tablaTrasteros'; // Redirige a la lista de usuarios</script>";
+			  }else{
+				echo "<script>alert('Error al actualizar el rol');</script>";
+		};
+	}//fin cambioRol
+
+
+//***************************************************************************+ */
+	public function cambioRolUser($id_user)
+	{
+		$sql= "UPDATE trasteros SET disponible = 1 WHERE id_trastero IN ( SELECT trastero_id FROM recibos WHERE user_id = :user)";
+		$conectar = $this->db->conectar();
+		$consulta = $conectar->prepare($sql);		
+		$consulta->bindParam(':user', $id_user);
+		$consulta->execute();
+	}//fin cambioRol
+
+
+
 
 	/**
 	 * Obtiene la información de un recibo por su ID.
@@ -151,10 +186,12 @@ class RecibosModelo
 	public function getRecibo($id)
 	{
 		// Construir la consulta SQL
-		$sql = "SELECT r.*,u.*
-				FROM recibos r 
+		$sql = "SELECT r.*, u.*, t.precio
+				FROM recibos r
 				INNER JOIN users u ON u.id_user = r.user_id
-				WHERE id_recibo = :id";
+				INNER JOIN trasteros t ON t.id_trastero = r.trastero_id
+				WHERE r.id_recibo = :id;";
+
 		// Conectar a la base de datos
 		$conectar = $this->db->conectar();
 		// Preparar la consulta SQL

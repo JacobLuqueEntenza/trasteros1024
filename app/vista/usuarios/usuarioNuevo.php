@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/trasteros1024/public/js/script.js"></script>
-</head>
-
-<body class="d-flex justify-content-center align-items-center vh-100">
 
     <?php
 
     session_start();
-
+    include('../layouts/headerFormularios.php');
     require_once('../../controlador/usuariosControlador.php');
     $controlador = new UsuariosControlador();
 
@@ -28,11 +16,14 @@
         $telefono = $_POST['telefono'];
         $email = $_POST['email']; 
         $pass = $_POST['pass'];       
-        if ($_SESSION['rol'] != 1) {            
+        if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 1 ) {            
             $comfirma_pass = $_POST['comfirma_pass'];
             // Verificar si las contraseñas coinciden
             if ($pass !== $comfirma_pass) {
-                echo "Las contraseñas no coinciden.";
+                echo "<script>
+                alert('Las contraseñas no coinciden!!');
+                window.history.back(); 
+              </script>";
                 exit();
             };
         };

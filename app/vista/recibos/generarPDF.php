@@ -11,7 +11,7 @@ ob_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista</title>
-    <link rel="stylesheet" href="http://localhost/tutrastero/tutrastero/public/css/estilos.css">
+    <link rel="stylesheet" href="http://localhost/trasteros1024/public/css/estilos.css">
 
 
 </head>
@@ -32,35 +32,28 @@ ob_start();
     ;
     ?>
     <div class="pdfDiv">
-        <div class="pdfDiv_E">
-            <img id="imgPDF" src="http://localhost/tutrastero/tutrastero/public/img/orden6.jpg" alt="foto">
-            <div class="direccion">
-                <h1>tutrasteroenhuelva.es</h1>
-                <p>Rosendo Luque Lafuente</p>
-                <p>Calle Legión Española 6</p>
-                <p>21005 Huelva</p>
-            </div>
-        </div>
+        <h1>tutrasteroenhuelva.es</h1>
         <table class="pdfRecibo">
             <tr>
-                <th>Recibo Nº:</th>
-                <th>Cliente: </th>
+                <th colspan="2">Recibo Nº:</th>
             </tr>
             <tr>
-                <td class="td1"><?php echo $recibo['id_recibo'] ?></td>
-                <td>Nombre: <?php echo $recibo['nombre'] . " " . $recibo['apellido_1'] . " " . $recibo['apellido_2'] ?></td>
-
-
+                <td class="td1"><?php echo $recibo['id_recibo'] ?></td>                
             </tr>
             <tr>
-                <td class="td1">Fecha: <?php echo date("d-m-Y"); ?></td>
-                <td>Direccion: <?php echo $recibo['direccion'] ?></td>
+                <th>Fecha:</th>
+                <th>Cliente:</th>
+            </tr>
+            <tr>               
+                <td class="td1"><?php echo date("d-m-Y"); ?></td>
+                <td><?php echo $recibo['nombre'] . " " . $recibo['apellido_1'] . " " . $recibo['apellido_2'] ?></td>
             </tr>
             <tr>
-                <td></td>
-                <td>Telefono: <?php echo $recibo['telefono'] ?></td>
+                <td><strong>Dirección:</strong> <?php echo $recibo['direccion'] ?></td>
+                <td><strong>Teléfono:</strong> <?php echo $recibo['telefono'] ?></td>
             </tr>
         </table>
+
 
         <table class="pdfConcepto">
             <tr>
@@ -68,8 +61,8 @@ ob_start();
                 <th>Precio</th>
             </tr>
             <tr>
-                <td>Alquiler de trastero número <?php echo $recibo['trastero_id'] ?></td>
-                <td>Mes de <?php echo $recibo['concepto'] ?></td>
+                <td><?php echo $recibo['concepto'] ?></td>
+                <td><?php echo $recibo['precio'] ?></td>
             </tr>
             <tr>
                 <td>21% de IVA incluido en el precio.</td>
@@ -86,17 +79,18 @@ ob_start();
                 <td></td>
             </tr>
         </table>
-        <table class="pdfFirma">
-            <tr>
-                <th></th>
-                <th>Fdo: Rosendo Luque Lafuente</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td><img id="firmapdf" src="http://localhost/tutrastero/tutrastero/public/img/firma.jpg" alt="firma">
-                </td>
-            </tr>
-        </table>
+        <br>
+        <div class="direccion">                
+                <p>Rosendo Luque Lafuente</p>
+                <img id="firmapdf" src="http://localhost/trasteros1024/public/multimedia/img/firma.jpg" alt="firma" width="300" height="200">
+                <p>Telefono: 611 80 28 37</p>
+                <p>email: tutrasteroenhuelva@gmail.com</p>
+                <p>Calle Legión Española 6</p>
+                <p>21005 Huelva</p>
+        </div>
+
+
+        
     </div>
 
 
@@ -130,7 +124,7 @@ $dompdf->render();
 // Verificar si se produjo algún error durante la renderización
 try {
     $dompdf->render();
-    $dompdf->stream("tutrasteroenhuelva MES " . $recibo['concepto'] . "pdf", array("Attachment" => true));//false para verlo en navegador, true para descargarlo
+    $dompdf->stream("Recibo " . $recibo['concepto'].date('Y') . "pdf", array("Attachment" => true));//false para verlo en navegador, true para descargarlo
 } catch (Exception $e) {
     echo 'Caught exception: ', $e->getMessage(), "\n";
 }

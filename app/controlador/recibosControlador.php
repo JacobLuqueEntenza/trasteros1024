@@ -20,8 +20,8 @@ class RecibosControlador
         // Obtener el número total de recibos con los filtros aplicados
         $totalRecibos = $recibos->filasLista($id_usuario, $fechas);
         // Calcular el número total de páginas
-        $filasPorPagina = 10; // Puedes ajustar este valor según tus necesidades
-        $totalPaginas = ceil($totalRecibos / $filasPorPagina);
+        $filasPorPagina = 10; // ajustar este valor según necesidades, en un futuro ponerlo a elegir
+        $totalPaginas = max(1, ceil($totalRecibos / $filasPorPagina));
         // Calcular el índice de inicio para la paginación
         $paginaInicio = ($pagina - 1) * $filasPorPagina;
         // Obtener el listado de recibos para la página actual
@@ -45,7 +45,7 @@ class RecibosControlador
         $filasxPagina = 10;
         $recibo = new RecibosModelo();
         $totalRecibos = $recibo->filasLista($id_usuario, $fechas);
-        $totalPaginas = ceil($totalRecibos / $filasxPagina);
+        $totalPaginas = ($totalRecibos > 0) ? ceil($totalRecibos / $filasxPagina) : 1;
 
         return $totalPaginas;
     }//fin numeroPaginas
@@ -105,7 +105,7 @@ class RecibosControlador
         $recibos->nuevoRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto);
 
         // Redirigir a la lista de recibos después de guardar
-        header('Location: recibosLista.php');
+        header('Location: recibosLista.php#tablaRecibos');
     }//fin guardarRecibo
 
     public function asignarTrastero($fecha, $id_user, $trastero, $concepto)
@@ -119,9 +119,20 @@ class RecibosControlador
 
         // Guardar el nuevo recibo en la base de datos
         $recibos->trasteroAsignado($fecha, $id_user, $trastero, $concepto);
+        //cambiamos el rol de cliente 
+        $recibos->cambioRol($id_user);
+    }//fin asignarTrastero
 
-        // Redirigir a la lista de recibos después de guardar
-        //header('Location: ../trasteros/trasteros.php');
+    public function liberarTrastero($id_user)
+    {
+        // Incluir los archivos necesarios
+        require_once "../../../config/conexion.php";
+        require_once '../../modelo/recibosModelo.php';
+
+        // Instanciar el modelo de recibos
+        $recibos = new RecibosModelo();       
+        //cambiamos el rol de cliente 
+        $recibos->cambioRolUser($id_user);
     }//fin guardarRecibo
 
     /**

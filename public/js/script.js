@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-     
+ /*    
 
     // Transferir el valor del modal al campo oculto al presionar "Guardar"
     document.getElementById('guardarTrastero').addEventListener('click', () => {
@@ -142,32 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Por favor, ingrese un número de trastero.');
         };
-       
-           
-        
-        
     });
-     rolSelect.value = "2"; // Valor asociado al rol de "Cliente"
+     //rolSelect.value = "2"; // Valor asociado al rol de "Cliente"
+*/
+
 });
-/**
- * cuando carge la pagina nos aparezca el loader
- * 
- 
-window.addEventListener("DOMContentLoaded", () => {
-    showLoader();
-  })
-  
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-        hideLoader();
-      }, 5000);
-  })
-  
-  
-  const loader = document.getElementById("loaderPagina");
-  const showLoader = () => {
-   loader.classList.add("show_loader");
-  }
-  const hideLoader = () => {
-    loader.style.display='flex';
-  }*/
+
