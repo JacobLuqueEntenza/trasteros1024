@@ -110,7 +110,7 @@ if (!empty($clienteTrastero) && isset($clienteTrastero[0]['nombre'], $clienteTra
       }
 
       echo '<script type="text/javascript">alert("Mensaje enviado correctamente");</script>';
-      echo '<script type="text/javascript">function Redirect(){window.location="../../public";}setTimeout("Redirect()", 50);</script>';
+      echo '<script type="text/javascript">function Redirect(){window.location="../vista/averias/averiaNuevo.php";}setTimeout("Redirect()", 50);</script>';
 
 
 

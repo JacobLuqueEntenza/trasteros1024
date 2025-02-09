@@ -125,7 +125,7 @@ class AveriasControlador
         }
 
         // Redirigir a la lista de usuarios
-        //header('Location: correoAverias.php');
+        header('Location: ../vista/averias/averiasLista.php#tablaUsuarios');
         exit();
     }//fin guardarAveria
 

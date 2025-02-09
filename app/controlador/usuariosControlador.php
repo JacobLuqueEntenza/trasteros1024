@@ -14,13 +14,13 @@ class UsuariosControlador
     public function login($email, $pass)
     {
         // Validación de entradas
-        /*if (empty($email) || empty($pass)) {
+        if (empty($email) || empty($pass)) {
             throw new Exception('El correo electrónico y la contraseña son obligatorios.');
         }
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             throw new Exception('El correo electrónico no es válido.');
-        }*/
+        }
 
         // Manejo de errores durante la inclusión de archivos necesarios
         try {
@@ -71,32 +71,44 @@ class UsuariosControlador
      */
     public function guardaUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $pass, $rol)
     {
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new Exception('El correo electrónico no es válido.');
-        }
-        // Hash de la contraseña
-        $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
-        // archivos necesarios con manejo de errores
+        // Manejo de errores durante la inclusión de archivos necesarios
         try {
             require_once "../../../config/conexion.php";
             require_once '../../modelo/usuariosModelo.php';
         } catch (Exception $e) {
             throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
         }
+        $usuario = new UsuariosModelo();
+        $existeEmail = $usuario->emailRepetido($email);
+        if($existeEmail==0){        
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception('El correo electrónico no es válido.');
+            }
+            // Hash de la contraseña
+            $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
+            // archivos necesarios con manejo de errores
+            try {
+                require_once "../../../config/conexion.php";
+                require_once '../../modelo/usuariosModelo.php';
+            } catch (Exception $e) {
+                throw new Exception('Error al incluir archivos necesarios: ' . $e->getMessage());
+            }
+            // Intentar agregar el usuario
+            try {
+                $usuario = new UsuariosModelo();
+                $usuario->agregarUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $hashedPass, $rol);
+        
+            } catch (Exception $e) {
+                throw new Exception('Error al guardar el usuario en la base de datos: ' . $e->getMessage());
+            }
 
-        // Intentar agregar el usuario
-        try {
-            $usuario = new UsuariosModelo();
-            $usuario->agregarUsuario($nombre, $apellido1, $apellido2, $direccion, $telefono, $email, $hashedPass, $rol);
-
-        } catch (Exception $e) {
-            throw new Exception('Error al guardar el usuario en la base de datos: ' . $e->getMessage());
+            // Redirigir a la lista de usuarios
+            header('Location: usuariosLista.php');
+            exit();
+        }else{
+            echo "<script>alert('Error: Este usuario ya existe, introduzca un email distinto');</script>";
         }
-
-        // Redirigir a la lista de usuarios
-        header('Location: usuariosLista.php');
-        exit();
+        
     }//fin guardaUsuario
 
 
@@ -313,41 +325,6 @@ class UsuariosControlador
         header('Location: usuariosLista.php');
         exit();
     }//fin guardaUsuario
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

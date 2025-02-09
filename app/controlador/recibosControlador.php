@@ -98,6 +98,7 @@ class RecibosControlador
         require_once "../../../config/conexion.php";
         require_once '../../modelo/recibosModelo.php';
 
+        
         // Instanciar el modelo de recibos
         $recibos = new RecibosModelo();
 
@@ -105,7 +106,7 @@ class RecibosControlador
         $recibos->nuevoRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto);
 
         // Redirigir a la lista de recibos después de guardar
-        header('Location: recibosLista.php#tablaRecibos');
+        //header('Location: recibosLista.php#tablaRecibos');
     }//fin guardarRecibo
 
     public function asignarTrastero($fecha, $id_user, $trastero, $concepto)
