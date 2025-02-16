@@ -117,14 +117,7 @@ class RecibosModelo
 	public function nuevoRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto)
 	{
 		try{
-		// Verificar si el ID está vacío
-		if (empty($fecha)||empty(trim($concepto))||empty($formaPago)) {
-			echo "<script>alert('Error: Te faltan datos.');</script>";
-			return false;
-		};
 		
-		
-
 		$sql = "INSERT INTO recibos (fecha, concepto, pagado, formaPago, user_id, trastero_id) VALUES (:fecha, :concepto, :pagada, :formaPago, :user, :trastero)";
 		$conectar = $this->db->conectar();
 		$consulta = $conectar->prepare($sql);
@@ -135,6 +128,7 @@ class RecibosModelo
 		$consulta->bindParam(':trastero', $trastero);
 		$consulta->bindParam(':concepto', $concepto);
 		$consulta->execute();
+	
 
 	} catch (PDOException $e) {
 		// Manejo de errores

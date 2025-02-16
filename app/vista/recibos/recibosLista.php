@@ -8,7 +8,7 @@ $pagina = isset($_GET['pagina']) ? $_GET['pagina'] : 1;
 
 //si la sesion no esta definida o el rol es solo usuario
 if (!isset($_SESSION['rol']) || $_SESSION['rol'] == 3) {
-    header('Location: /trastero1024/public/index.php');
+    header('Location: /trastero1024/index.php');
 }
 
 //si esta definidad la variable de sesion id_user, la ponemos en la sentencia en el modelo (WHERE id_user=$_SESSION['id_user']), y de lo contrario (WHERE=1)
@@ -81,7 +81,7 @@ $totalPaginas = $recibos->numeroPaginas($id_usuario, $fechas);
                 Lista de Recibos
             </div>
             <div class="p-0">
-                <table class="table text-center">
+                <table class="table text-center" id="tablaRecibos">
                     <thead>
                         <tr>
                             <th scope="col" class="col-2">Recibo nº</th>

@@ -24,7 +24,7 @@ function cerrarSesion()
     session_destroy();
 
     // Redirigir a la página de inicio de sesión u otra página deseada
-    header("Location: /trasteros1024/public/index.php");
+    header("Location: /trasteros1024/index.php");
     exit;
 }
 

@@ -16,7 +16,7 @@ $averias = new AveriasControlador();
 $errores = array();
 //si no esta definida la sesion o usuario, no dejarlo ver
 /*if (!isset($_SESSION['usuario']) || $_SESSION['rol'] <3) {
-    header('Location: /tutrastero/tutrastero/public/index.php');
+    header('Location: /tutrastero/tutrastero/index.php');
     exit;
 };*/
 //si tenemos el post asignamos variables

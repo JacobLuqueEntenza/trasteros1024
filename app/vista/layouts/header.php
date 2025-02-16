@@ -24,7 +24,7 @@
                 </svg>
             </label>
             <ul class="ulMenu">
-                <li class="liMenu"><a class="aMenu" href="/trasteros1024/public/index.php">Inicio</a> </li>
+                <li class="liMenu"><a class="aMenu" href="/trasteros1024/index.php">Inicio</a> </li>
                 <li class="liMenu"><a class="aMenu"
                         href="/trasteros1024/app/vista/trasteros/trasteros.php">Trasteros</a> </li>
                 <li class="liMenu"><a class="aMenu" href="/trasteros1024/app/vista/layouts/contacto.php">Contacto</a>

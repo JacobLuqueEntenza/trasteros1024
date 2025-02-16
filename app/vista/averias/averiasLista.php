@@ -5,7 +5,7 @@ require_once('../../controlador/averiasControlador.php');
 $averias = new AveriasControlador();
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] > 2) {
-    header('Location: /trasteros1024/public/index.php');
+    header('Location: /trasteros1024/index.php');
     exit;
 }
 ;

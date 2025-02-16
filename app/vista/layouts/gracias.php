@@ -10,7 +10,7 @@
     <div class="container text-center mt-5">
         <h1 class="display-4">¡Gracias por Contactarnos!</h1>
         <p class="lead">Hemos recibido tu mensaje y nos pondremos en contacto contigo lo antes posible.</p>
-        <a href="/trasteros1024/public/index.php" class="btn btn-primary btn-lg">Volver a la Página Principal</a>
+        <a href="/trasteros1024/index.php" class="btn btn-primary btn-lg">Volver a la Página Principal</a>
     </div>
 </body>
 </html>

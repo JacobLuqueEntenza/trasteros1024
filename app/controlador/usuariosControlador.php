@@ -41,7 +41,7 @@ class UsuariosControlador
                 $_SESSION['id_user'] = $existeUsuario['id_user'];
                 $_SESSION['rol'] = $existeUsuario['rol_id'];
                 $_SESSION['trastero'] = $existeUsuario['trastero_id'];
-                header('Location: /trasteros1024/public/index.php');
+                header('Location: /trasteros1024/index.php');
             } else {
                 header('Location: /trasteros1024/app/vista/usuarios/login.php');
             }

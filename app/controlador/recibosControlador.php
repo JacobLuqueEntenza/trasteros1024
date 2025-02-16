@@ -101,10 +101,11 @@ class RecibosControlador
         
         // Instanciar el modelo de recibos
         $recibos = new RecibosModelo();
-
+        // Verificar si el ID está vacío
+		
         // Guardar el nuevo recibo en la base de datos
         $recibos->nuevoRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto);
-
+    
         // Redirigir a la lista de recibos después de guardar
         //header('Location: recibosLista.php#tablaRecibos');
     }//fin guardarRecibo

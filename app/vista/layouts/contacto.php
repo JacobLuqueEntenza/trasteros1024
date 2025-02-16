@@ -24,7 +24,7 @@ include('../layouts/headerFormularios.php');
         </div>
         <div class="form-group text-center mt-4 d-flex justify-content-between">
             <button type="submit" class="btn btn-success w-25">Enviar</button>
-            <button type="button" class="btn btn-secondary w-25" onclick="location.href='../../../public/index.php'">Cancelar</button>
+            <button type="button" class="btn btn-secondary w-25" onclick="location.href='../../../index.php'">Cancelar</button>
         </div>
     </form>
 </div>

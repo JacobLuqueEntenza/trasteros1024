@@ -29,29 +29,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $id_user = $_POST['id'];
         $trastero = $_POST['trastero'];
         $fecha = $_POST['fecha'];
-        $concepto = $_POST['concepto'];
-        //si la variable fecha no esta vacia poner pagada, es p ara un futuro que mande correo y haga el apunte en la base de datos en 0, como no pagada
+        $concepto = trim($_POST['concepto']);
 
-        if (isset($_REQUEST['banco'])) {
+        // Inicializar la variable formaPago
+        $formaPago = null;
+
+        if (isset($_POST['banco'])) {
             $formaPago = 'banco';
-        } elseif (isset($_REQUEST['bizum'])) {
+        } elseif (isset($_POST['bizum'])) {
             $formaPago = 'bizum';
-        } elseif (isset($_REQUEST['efectivo'])) {
+        } elseif (isset($_POST['efectivo'])) {
             $formaPago = 'efectivo';
         }
-        ;
-        $pagada = !empty($formaPago) || $pagada = !empty($fecha) ? 1 : null;
 
+        // Determinar si está pagada
+        $pagada = (!empty($formaPago) || !empty($fecha)) ? 1 : null;
 
-        $controladorRecibo->guardarRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto);
-        exit();
+        // Validación de datos obligatorios
+        if (empty($fecha) || empty($concepto) || empty($formaPago)) {
+            echo "<script>alert('Error: Te faltan datos en el formulario.');window.history.back();</script>";
+            
+            exit();
+        }else{
+        // Guardar recibo si los datos son válidos
+                $controladorRecibo->guardarRecibo($fecha, $pagada, $formaPago, $id_user, $trastero, $concepto);
+                header('Location:recibosLista.php#tablaRecibos');
+                exit();
+
+        }
+
+        
     }
-    ;
-}
-;
+};
 
 if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
-    header('Location: ../index.php');
+    header('Location: index.php');
     exit;
 }
 ;

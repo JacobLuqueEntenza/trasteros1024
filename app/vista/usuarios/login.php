@@ -25,7 +25,7 @@
     }
     ;
     ?>
-    <h1 id="h1Login" style="text-align: center;margin-top:5em"><a id="ah1Login" href="/trasteros1024/public/index.php">tutrasteroenhuelva.es</a></h1>
+    <h1 id="h1Login" style="text-align: center;margin-top:5em"><a id="ah1Login" href="/trasteros1024/index.php">tutrasteroenhuelva.es</a></h1>
     <main class="form-signin w-100 m-auto">
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
             <h1 class="h3 mb-3 fw-normal" style="text-align: center;">Acceso</h1>

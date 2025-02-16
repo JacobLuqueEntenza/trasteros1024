@@ -1,6 +1,6 @@
 <?php
 // Incluir el header 
-include '../app/vista/layouts/header.php';
+include 'app/vista/layouts/header.php';
 
 ?>
 <div id="loaderPagina" class="section_loader">
@@ -38,7 +38,7 @@ include '../app/vista/layouts/header.php';
     </div>
 </section>
 
-<section class="alquiler">
+<section class="alquiler" id="alquiler">
     <h2>Proceso de Alquiler</h2>
     <div class="divAlquiler">
         <div class="tarjeta" id="tarj-1">1</div>
@@ -46,13 +46,13 @@ include '../app/vista/layouts/header.php';
             <h3>Selección</h3>
             <p>Elige el trastero que mejor se ajuste a tus necesidades y presupuesto.</p>
         </div>
-        <img src="multimedia/img/flechaAbj.png" alt="flechaDerecha">
+        <img src="/trasteros1024/public/multimedia/img/flechaAbj.png" alt="flechaDerecha">
         <div class="tarjeta" id="tarj-2">2</div>
         <div class="tarjeta">
             <h3>Registro</h3>
             <p>Completa el formulario de registro y firma el contrato de alquiler.</p>
         </div>
-        <img src="multimedia/img/flechaAbj.png" alt="flechaDerecha">
+        <img src="/trasteros1024/public/multimedia/img/flechaAbj.png" alt="flechaDerecha">
         <div class="tarjeta" id="tarj-3">3</div>
         <div class="tarjeta">
             <h3>Seguridad Garantizada</h3>
@@ -87,16 +87,16 @@ include '../app/vista/layouts/header.php';
     <div class="divContacto">
         <div class="tarjeta">
             <div class="divImg">
-                <img src="multimedia/img/gmail.png" alt="gmail">
-                <img src="multimedia/img/outlook.png" alt="outlook">
+                <img src="/trasteros1024/public/multimedia/img/gmail.png" alt="gmail">
+                <img src="/trasteros1024/public/multimedia/img/outlook.png" alt="outlook">
             </div>
             <h3>Correo Electrónico</h3>
             <p>Envíanos tus consultas y solicitudes a tutrasteroenhuelva@gmail.com</p>
         </div>
         <div class="tarjeta">
             <div class="divImg">
-                <img src="multimedia/img/telefono.png" alt="telefono">
-                <img src="multimedia/img/whatapp.png" alt="whatapp">
+                <img src="/trasteros1024/public/multimedia/img/telefono.png" alt="telefono">
+                <img src="/trasteros1024/public/multimedia/img/whatapp.png" alt="whatapp">
             </div>
             <h3>Línea de Atención</h3>
             <p>Llámanos al 555-1234 para obtener asistencia personalizada.</p>
@@ -106,7 +106,7 @@ include '../app/vista/layouts/header.php';
 
 <section class="mapa">
     <h2>Donde Estamos:</h2>
-    <div class="tarjeta">
+    <div class="tarjeta" id="mapalocal">
         <p>Nuestras instalaciones se encuantra ubicada en local comercial con salida a dos calles, de fácil acceso.</p>
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.5861172929244!2d-6.943239264047862!3d37.281381421458924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd11cfc22776e743%3A0x827feb3310ef61c!2sC.%20Legi%C3%B3n%20Espa%C3%B1ola%2C%206%2C%2021005%20Huelva!5e0!3m2!1ses!2ses!4v1714458476831!5m2!1ses!2ses"
@@ -116,5 +116,5 @@ include '../app/vista/layouts/header.php';
 
 <?php
 // Incluir el header 
-include '../app/vista/layouts/footer.php';
+include 'app/vista/layouts/footer.php';
 ?>

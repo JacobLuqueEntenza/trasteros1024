@@ -1,10 +1,10 @@
 <footer class="footer">
             <div class="footarjeta">
-                <a href="#">Catálogo de Trasteros</a>
-                <a href="#">Proceso de Alquiler</a>
-                <a href="#">Cobro de Recibos y Facturación</a>
-                <a href="#">Contacto</a>
-                <a href="#">Dirección</a>            
+                <a href="/trasteros1024/app/vista/trasteros/trasteros.php">Catálogo de Trasteros</a>
+                <a href="/trasteros1024/index.php#alquiler">Proceso de Alquiler</a>
+                <a href="/trasteros1024/app/vista/recibos/recibosLista.php">Cobro de Recibos y Facturación</a>
+                <a href="/trasteros1024/app/vista/layouts/contacto.php">Contacto</a>
+                <a href="/trasteros1024/index.php#mapalocal">Dirección</a>            
             </div>
             <div class="footarjeta2">            
                 <h2>Línea de Atención</h2>

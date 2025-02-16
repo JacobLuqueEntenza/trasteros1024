@@ -8,7 +8,7 @@
 
     // Redirige si no eres administrador
     if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
-        header('Location: ../../../public/index.php');
+        header('Location: ../../../index.php');
         exit;
     }
 

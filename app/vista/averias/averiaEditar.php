@@ -8,7 +8,7 @@ session_start();
     $controladorAveria = new AveriasControlador();
     //si no eres administrador al index
     if (!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1) {
-        header('Location: ../index.php');
+        header('Location: index.php');
         exit;
     };
     //nos traemos al formulario de editar los datos
